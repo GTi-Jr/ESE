@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  / Validações
+  /Validações/
   validates :name, :presence => true
   validates :email, :presence => true, :uniqueness => true
   validates :age, :presence => true, :numericality => true
@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :phone, :presence => true, :numericality => true
   validates :course, :presence => true, :numericality => false 
   validates :facebook, :presence => true
-  validates :has_paid, :presence => true /
+  validates :has_paid, :presence => true
 
   /Auto Geração de Senha/
   before_create { generate_token(:password) }
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :courses, through: :activities
   has_many :lectures, through: :activities
   has_many :extras, through: :activities
-  has_many :techs, through: :activities
+  has_many :teches, through: :activities
 
   /Método para Gerar Senha Randomica/
   def generate_token(column)

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @extra.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @extra.description %>
+</p>
+
+<p>
+  <strong>Limit:</strong>
+  <%= @extra.limit %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @extra.price %>
+</p>
+
+<%= link_to 'Edit', edit_extra_path(@extra) %> |
+<%= link_to 'Back', extras_path %>

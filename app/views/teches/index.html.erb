@@ -1,0 +1,35 @@
+<h1>Listing teches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Day</th>
+      <th>Time</th>
+      <th>Limit</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teches.each do |tech| %>
+      <tr>
+        <td><%= tech.title %></td>
+        <td><%= tech.description %></td>
+        <td><%= tech.day %></td>
+        <td><%= tech.time %></td>
+        <td><%= tech.limit %></td>
+        <td><%= tech.price %></td>
+        <td><%= link_to 'Show', tech %></td>
+        <td><%= link_to 'Edit', edit_tech_path(tech) %></td>
+        <td><%= link_to 'Destroy', tech, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tech', new_tech_path %>

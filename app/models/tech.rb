@@ -1,4 +1,4 @@
-class Course < ActiveRecord::Base
+class Tech < ActiveRecord::Base
   /Validações/
   validates :title, :presence => true
   validates :description, :presence => true

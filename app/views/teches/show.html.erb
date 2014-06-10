@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tech.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tech.description %>
+</p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @tech.day %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @tech.time %>
+</p>
+
+<p>
+  <strong>Limit:</strong>
+  <%= @tech.limit %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @tech.price %>
+</p>
+
+<%= link_to 'Edit', edit_tech_path(@tech) %> |
+<%= link_to 'Back', teches_path %>
