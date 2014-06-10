@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
       t.string :email
       t.string :phone
-      t.string :couse
+      t.string :course
       t.string :facebook
       t.boolean :has_paid
 

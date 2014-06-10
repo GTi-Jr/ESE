@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140608195942) do
     t.string   "password"
     t.string   "email"
     t.string   "phone"
-    t.string   "couse"
+    t.string   "course"
     t.string   "facebook"
     t.boolean  "has_paid"
     t.datetime "created_at"
