@@ -5,9 +5,13 @@
     
   </div>
   <div class="span4">
-    <%= link_to image_tag("programacao.png") , programs_path %>
+    <%= link_to image_tag("programacao.png") , courses_path %>
   </div>
   <div class="span4">   
-    <%= link_to image_tag("hotel.png"), rooms_path %>
+    <%= link_to image_tag("hotel.png"), lectures_path %>
   </div>
+</div>
+
+<div class="form-actions" style="background-color: transparent">
+  <%= link_to 'Log out', log_out_path, :class => 'btn btn-danger'%>
 </div>

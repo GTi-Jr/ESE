@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
 
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
   /Rotas da Session /
   get "log_out" => "session#destroy", :as => "log_out"
   get "log_in" => "session#new", :as => "log_in"
@@ -11,29 +11,33 @@ Rails.application.routes.draw do
   post "log_in" => "session#create"
   root 'session#new'
 
+  /Rotas para Usuários/
+  get "entry" => "users#new", :as => "new_users"
+
+
   / Rotas para Cursos/  
   put "subscribe/:id" => "course#subscribe", :as => "subscribe_course"
   put "unsubscribe/:id" => "course#unsubscribe", :as => "unsubscribe_course"
-  get 'courses/' => 'course#index', :as => "courses"  
-  get 'course/:id' => 'course#show'
+  get 'courses/' => 'courses#index', :as => "courses"  
+  get 'course/:id' => 'courses#show'
 
   / Rotas para Extra/  
-  put "subscribe/:id" => "extra#subscribe", :as => "subscribe_extra"
-  put "unsubscribe/:id" => "extra#unsubscribe", :as => "unsubscribe_extra"
-  get 'extras/' => 'extra#index', :as => "extras"  
-  get 'extra/:id' => 'extra#show'
+  put "subscribe/:id" => "extras#subscribe", :as => "subscribe_extra"
+  put "unsubscribe/:id" => "extras#unsubscribe", :as => "unsubscribe_extra"
+  get 'extras/' => 'extras#index', :as => "extras"  
+  get 'extra/:id' => 'extras#show'
 
   / Rotas para Tecnicas/  
-  put "subscribe/:id" => "tech#subscribe", :as => "subscribe_tech"
-  put "unsubscribe/:id" => "tech#unsubscribe", :as => "unsubscribe_tech"
-  get 'teches/' => 'tech#index', :as => "teches"  
-  get 'tech/:id' => 'tech#show'
+  put "subscribe/:id" => "teches#subscribe", :as => "subscribe_tech"
+  put "unsubscribe/:id" => "teches#unsubscribe", :as => "unsubscribe_tech"
+  get 'teches/' => 'teches#index', :as => "teches"  
+  get 'tech/:id' => 'teches#show'
 
   / Rotas para Palestras/  
-  put "subscribe/:id" => "lecture#subscribe", :as => "subscribe_lecture"
-  put "unsubscribe/:id" => "lecture#unsubscribe", :as => "unsubscribe_lecture"
-  get 'lectures/' => 'lecture#index', :as => "lectures"  
-  get 'lecture/:id' => 'lecture#show'
+  put "subscribe/:id" => "lectures#subscribe", :as => "subscribe_lecture"
+  put "unsubscribe/:id" => "lectures#unsubscribe", :as => "unsubscribe_lecture"
+  get 'lectures/' => 'lectures#index', :as => "lectures"  
+  get 'lecture/:id' => 'lectures#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

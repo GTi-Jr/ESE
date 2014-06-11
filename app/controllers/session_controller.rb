@@ -14,7 +14,7 @@ class SessionController < ApplicationController
       session[:user_id] = user.id
       redirect_to index_path, :notice => "Logged in!"
     else
-      redirect_to "/log_in", :notice => "Invalid Token"     
+      redirect_to "/log_in", :notice => "Invalid Password"     
     end
   end
 

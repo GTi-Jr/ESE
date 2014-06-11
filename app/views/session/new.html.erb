@@ -7,9 +7,13 @@
       </p>
       <p>
         <h1>Senha</h1>      
-      <%= text_field_tag :token, params[:token] %>
+      <%= text_field_tag :password, params[:password] %>
     </p>
     
-    <p class="button"><%= submit_tag "Log in" %></p>
+    <p class="btn btn-info"><input type="submit" value="Submit"></p>
   <% end %> 
+
+  <div class="form-actions" style="background-color: transparent">
+    <%= link_to 'Inscrever', new_users_path, :class => 'btn btn-success'%>
+  </div>
 </div>

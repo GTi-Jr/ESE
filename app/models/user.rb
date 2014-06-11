@@ -5,11 +5,9 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :uniqueness => true
   validates :age, :presence => true, :numericality => true
   validates :serial, :presence => true, :numericality => true
-  validates :password, :presence => true
   validates :phone, :presence => true, :numericality => true
   validates :course, :presence => true, :numericality => false 
   validates :facebook, :presence => true
-  validates :has_paid, :presence => true
 
   /Auto Geração de Senha/
   before_create { generate_token(:password) }

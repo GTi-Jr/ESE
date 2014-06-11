@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  def new
+  end
+
+  def create    
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -10,6 +16,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :age, :serial, :password, :email, :phone, :couse, :facebook, :has_paid)
+      params.require(:user).permit(:name, :age, :serial, :password, :email, :phone, :course, :facebook, :has_paid)
     end
 end
