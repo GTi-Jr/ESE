@@ -1,15 +1,39 @@
 Rails.application.routes.draw do
-  resources :teches
 
-  resources :extras
 
-  resources :lectures
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
-  resources :courses
+  /Rotas da Session /
+  get "log_out" => "session#destroy", :as => "log_out"
+  get "log_in" => "session#new", :as => "log_in"
+  get "index" => "session#index", :as => "index"
+  post "log_in" => "session#create"
+  root 'session#new'
 
-  resources :activities
+  / Rotas para Cursos/  
+  put "subscribe/:id" => "course#subscribe", :as => "subscribe_course"
+  put "unsubscribe/:id" => "course#unsubscribe", :as => "unsubscribe_course"
+  get 'courses/' => 'course#index', :as => "courses"  
+  get 'course/:id' => 'course#show'
 
-  resources :users
+  / Rotas para Extra/  
+  put "subscribe/:id" => "extra#subscribe", :as => "subscribe_extra"
+  put "unsubscribe/:id" => "extra#unsubscribe", :as => "unsubscribe_extra"
+  get 'extras/' => 'extra#index', :as => "extras"  
+  get 'extra/:id' => 'extra#show'
+
+  / Rotas para Tecnicas/  
+  put "subscribe/:id" => "tech#subscribe", :as => "subscribe_tech"
+  put "unsubscribe/:id" => "tech#unsubscribe", :as => "unsubscribe_tech"
+  get 'teches/' => 'tech#index', :as => "teches"  
+  get 'tech/:id' => 'tech#show'
+
+  / Rotas para Palestras/  
+  put "subscribe/:id" => "lecture#subscribe", :as => "subscribe_lecture"
+  put "unsubscribe/:id" => "lecture#unsubscribe", :as => "unsubscribe_lecture"
+  get 'lectures/' => 'lecture#index', :as => "lectures"  
+  get 'lecture/:id' => 'lecture#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

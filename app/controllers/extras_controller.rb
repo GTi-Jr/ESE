@@ -1,63 +1,33 @@
 class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
 
-  # GET /extras
-  # GET /extras.json
+
   def index
     @extras = Extra.all
   end
 
-  # GET /extras/1
-  # GET /extras/1.json
   def show
+    @extra = Extra.find(params[:id])
+    @users = @extra.users
   end
 
-  # GET /extras/new
-  def new
-    @extra = Extra.new
-  end
-
-  # GET /extras/1/edit
-  def edit
-  end
-
-  # POST /extras
-  # POST /extras.json
-  def create
-    @extra = Extra.new(extra_params)
-
-    respond_to do |format|
-      if @extra.save
-        format.html { redirect_to @extra, notice: 'Extra was successfully created.' }
-        format.json { render :show, status: :created, location: @extra }
-      else
-        format.html { render :new }
-        format.json { render json: @extra.errors, status: :unprocessable_entity }
-      end
+  def buy
+    @extra = Extra.find(params[:id])
+      if @extra.users.count
+      @extra.users << current_user
+      redirect_to extras_path, :notice => "Cadastrado =)"
+    else
+      redirect_to extras_path, :notice => "Esgotado mah"
     end
   end
 
-  # PATCH/PUT /extras/1
-  # PATCH/PUT /extras/1.json
-  def update
-    respond_to do |format|
-      if @extra.update(extra_params)
-        format.html { redirect_to @extra, notice: 'Extra was successfully updated.' }
-        format.json { render :show, status: :ok, location: @extra }
-      else
-        format.html { render :edit }
-        format.json { render json: @extra.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /extras/1
-  # DELETE /extras/1.json
-  def destroy
-    @extra.destroy
-    respond_to do |format|
-      format.html { redirect_to extras_url, notice: 'Extra was successfully destroyed.' }
-      format.json { head :no_content }
+  def unbuy
+    @extra = Extra.find(params[:id])
+    if @extra.users.include?(current_user)
+      @extra.users.delete(current_user)
+      redirect_to extras_path, :notice => "Égua mah tu não vai querer isso"
+    else
+      redirect_to extras_path, :notice => "Maxo tu nem comprou essa xibata"
     end
   end
 

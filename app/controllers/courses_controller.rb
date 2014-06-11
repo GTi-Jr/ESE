@@ -1,63 +1,33 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  # GET /courses
-  # GET /courses.json
+
   def index
     @courses = Course.all
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
   def show
+    @course = Course.find(params[:id])
+    @users = @course.users
   end
 
-  # GET /courses/new
-  def new
-    @course = Course.new
-  end
-
-  # GET /courses/1/edit
-  def edit
-  end
-
-  # POST /courses
-  # POST /courses.json
-  def create
-    @course = Course.new(course_params)
-
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+  def subscribe
+    @course = Course.find(params[:id])
+      if @course.users.count < @course.limit && checkTime(@course.time)
+      @course.users << current_user
+      redirect_to courses_path, :notice => "Cadastrado =)"
+    else
+      redirect_to courses_path, :notice => "Programação lotado ou está chocando horário "
     end
   end
 
-  # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
-  def update
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        format.html { render :edit }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /courses/1
-  # DELETE /courses/1.json
-  def destroy
-    @course.destroy
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
-      format.json { head :no_content }
+  def unsubscribe
+    @course = Course.find(params[:id])
+    if @course.users.include?(current_user)
+      @course.users.delete(current_user)
+      redirect_to courses_path, :notice => "Égua mah tu não vai mais assistir isso"
+    else
+      redirect_to courses_path, :notice => "Maxo tu nem tá nessa programação"
     end
   end
 
@@ -70,5 +40,14 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:title, :description, :time, :day, :limit, :price)
+    end
+
+    def checkTime(time)
+      current_user.programs.each do |course|
+        if course.time == time
+          return false
+        end
+      end
+      return true
     end
 end

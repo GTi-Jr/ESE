@@ -1,63 +1,33 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: [:show, :edit, :update, :destroy]
 
-  # GET /lectures
-  # GET /lectures.json
+
   def index
     @lectures = Lecture.all
   end
 
-  # GET /lectures/1
-  # GET /lectures/1.json
   def show
+    @lecture = Lecture.find(params[:id])
+    @users = @lecture.users
   end
 
-  # GET /lectures/new
-  def new
-    @lecture = Lecture.new
-  end
-
-  # GET /lectures/1/edit
-  def edit
-  end
-
-  # POST /lectures
-  # POST /lectures.json
-  def create
-    @lecture = Lecture.new(lecture_params)
-
-    respond_to do |format|
-      if @lecture.save
-        format.html { redirect_to @lecture, notice: 'Lecture was successfully created.' }
-        format.json { render :show, status: :created, location: @lecture }
-      else
-        format.html { render :new }
-        format.json { render json: @lecture.errors, status: :unprocessable_entity }
-      end
+  def subscribe
+    @lecture = Lecture.find(params[:id])
+      if @lecture.users.count < @lecture.limit && checkTime(@lecture.time)
+      @lecture.users << current_user
+      redirect_to lectures_path, :notice => "Cadastrado =)"
+    else
+      redirect_to lectures_path, :notice => "Palestra lotada ou está chocando horário "
     end
   end
 
-  # PATCH/PUT /lectures/1
-  # PATCH/PUT /lectures/1.json
-  def update
-    respond_to do |format|
-      if @lecture.update(lecture_params)
-        format.html { redirect_to @lecture, notice: 'Lecture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lecture }
-      else
-        format.html { render :edit }
-        format.json { render json: @lecture.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /lectures/1
-  # DELETE /lectures/1.json
-  def destroy
-    @lecture.destroy
-    respond_to do |format|
-      format.html { redirect_to lectures_url, notice: 'Lecture was successfully destroyed.' }
-      format.json { head :no_content }
+  def unsubscribe
+    @lecture = Lecture.find(params[:id])
+    if @lecture.users.include?(current_user)
+      @lecture.users.delete(current_user)
+      redirect_to lectures_path, :notice => "Égua mah tu não vai mais assistir isso"
+    else
+      redirect_to lectures_path, :notice => "Maxo tu nem tá nessa Palestra"
     end
   end
 
@@ -70,5 +40,14 @@ class LecturesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lecture_params
       params.require(:lecture).permit(:title, :description, :time, :day, :price)
+    end
+
+    def checkTime(time)
+      current_user.programs.each do |course|
+        if course.time == time
+          return false
+        end
+      end
+      return true
     end
 end

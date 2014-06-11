@@ -1,31 +1,54 @@
-<h1>Listing extras</h1>
+<%- model_class = Extra -%>
+<div class="page-header">
+  <h1>Produtos</h1>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Limit</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
 
-  <tbody>
-    <% @extras.each do |extra| %>
-      <tr>
-        <td><%= extra.title %></td>
-        <td><%= extra.description %></td>
-        <td><%= extra.limit %></td>
-        <td><%= extra.price %></td>
-        <td><%= link_to 'Show', extra %></td>
-        <td><%= link_to 'Edit', edit_extra_path(extra) %></td>
-        <td><%= link_to 'Destroy', extra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <div class="span4">    
+  </div>
+  <div class="span4">
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        </div>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="span4">
+  </div>    
+</div>
 
-<br>
+<div class="container"> 
+    <div class="row-fluid pricing-table pricing-three-column">
+      <div class="row">
+          <% @extras.order(:time).each do |extra| %>
+            <div class="span4 plan" style="width: 300px;height: 300px;">          
+              <ul>
+                <li class="plan-feature"><%= extra.title %></li>
+                <li class="plan-feature">(<%= extra.users.count %>/<%= extra.limit %>)</li>
+                <% if extra.users.include?(current_user)%>
+                  <p>
+                    <div class="label label-danger">
+                      <%= link_to 'Cancelar', unsubscribe_extra_path(extra.id), :method => :put, :class=>"btn btn-danger icon-white icon-ok" %>
+                    </div>
+                  </p>
+                <% else %>
+                  <p>
+                    <div class="label label-danger">
+                      <%= link_to 'Cadastrar', subscribe_extra_path(extra.id), :method => :put, :class=>"btn btn-success icon-white icon-ok" %>
+                    </div>
+                  </p>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+      </div>        
+    </div>
+</div>
 
-<%= link_to 'New Extra', new_extra_path %>
+<div class="form-actions" style="background-color: transparent">
+  <%= link_to 'Voltar', "/index", :class => 'btn btn-info'%>
+</div>

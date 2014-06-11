@@ -1,63 +1,32 @@
 class TechesController < ApplicationController
   before_action :set_tech, only: [:show, :edit, :update, :destroy]
 
-  # GET /teches
-  # GET /teches.json
   def index
     @teches = Tech.all
   end
 
-  # GET /teches/1
-  # GET /teches/1.json
   def show
+    @tech = Tech.find(params[:id])
+    @users = @tech.users
   end
 
-  # GET /teches/new
-  def new
-    @tech = Tech.new
-  end
-
-  # GET /teches/1/edit
-  def edit
-  end
-
-  # POST /teches
-  # POST /teches.json
-  def create
-    @tech = Tech.new(tech_params)
-
-    respond_to do |format|
-      if @tech.save
-        format.html { redirect_to @tech, notice: 'Tech was successfully created.' }
-        format.json { render :show, status: :created, location: @tech }
-      else
-        format.html { render :new }
-        format.json { render json: @tech.errors, status: :unprocessable_entity }
-      end
+  def subscribe
+    @tech = Tech.find(params[:id])
+      if @tech.users.count < @tech.limit && checkTime(@tech.time)
+      @tech.users << current_user
+      redirect_to teches_path, :notice => "Cadastrado =)"
+    else
+      redirect_to teches_path, :notice => "Visita Técnica lotada ou está chocando horário "
     end
   end
 
-  # PATCH/PUT /teches/1
-  # PATCH/PUT /teches/1.json
-  def update
-    respond_to do |format|
-      if @tech.update(tech_params)
-        format.html { redirect_to @tech, notice: 'Tech was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tech }
-      else
-        format.html { render :edit }
-        format.json { render json: @tech.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /teches/1
-  # DELETE /teches/1.json
-  def destroy
-    @tech.destroy
-    respond_to do |format|
-      format.html { redirect_to teches_url, notice: 'Tech was successfully destroyed.' }
-      format.json { head :no_content }
+  def unsubscribe
+    @tech = Tech.find(params[:id])
+    if @tech.users.include?(current_user)
+      @tech.users.delete(current_user)
+      redirect_to teches_path, :notice => "Égua mah tu não vai mais assistir isso"
+    else
+      redirect_to teches_path, :notice => "Maxo tu nem tá nessa Visita Técnica"
     end
   end
 
@@ -70,5 +39,14 @@ class TechesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tech_params
       params.require(:tech).permit(:title, :description, :day, :time, :limit, :price)
+    end
+
+    def checkTime(time)
+      current_user.programs.each do |tech|
+        if tech.time == time
+          return false
+        end
+      end
+      return true
     end
 end

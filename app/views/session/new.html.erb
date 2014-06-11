@@ -1,0 +1,15 @@
+<div class="row" style="text-align:center;padding-top:25%;">  
+  
+  <%= form_tag do %>
+    <p>
+      <h1>E-mail</h1>
+      <%= text_field_tag :email, params[:email] %>
+      </p>
+      <p>
+        <h1>Senha</h1>      
+      <%= text_field_tag :token, params[:token] %>
+    </p>
+    
+    <p class="button"><%= submit_tag "Log in" %></p>
+  <% end %> 
+</div>
