@@ -1,6 +1,6 @@
 class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_and_redirect
 
   def index
     @extras = Extra.all
@@ -15,9 +15,9 @@ class ExtrasController < ApplicationController
     @extra = Extra.find(params[:id])
       if @extra.users.count
       @extra.users << current_user
-      redirect_to extras_path, :notice => "Cadastrado =)"
+      redirect_to extras_path, :notice => "Comprado =)"
     else
-      redirect_to extras_path, :notice => "Esgotado mah"
+      redirect_to extras_path, :error => "Esgotado mah"
     end
   end
 
@@ -25,9 +25,9 @@ class ExtrasController < ApplicationController
     @extra = Extra.find(params[:id])
     if @extra.users.include?(current_user)
       @extra.users.delete(current_user)
-      redirect_to extras_path, :notice => "Égua mah tu não vai querer isso"
+      redirect_to extras_path, :alert => "Égua mah tu não vai querer isso"
     else
-      redirect_to extras_path, :notice => "Maxo tu nem comprou essa xibata"
+      redirect_to extras_path, :error => "Maxo tu nem comprou essa xibata"
     end
   end
 

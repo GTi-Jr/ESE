@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
       @course.users << current_user
       redirect_to courses_path, :notice => "Cadastrado =)"
     else
-      redirect_to courses_path, :notice => "Programação lotado ou está chocando horário "
+      redirect_to courses_path, :error => "Programação lotado ou está chocando horário "
     end
   end
 
@@ -25,9 +25,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     if @course.users.include?(current_user)
       @course.users.delete(current_user)
-      redirect_to courses_path, :notice => "Égua mah tu não vai mais assistir isso"
+      redirect_to courses_path, :alert => "Égua mah tu não vai mais assistir isso"
     else
-      redirect_to courses_path, :notice => "Maxo tu nem tá nessa programação"
+      redirect_to courses_path, :error => "Maxo tu nem tá nessa programação"
     end
   end
 
@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
     end
 
     def checkTime(time)
-      current_user.programs.each do |course|
+      current_user.courses.each do |course|
         if course.time == time
           return false
         end

@@ -1,6 +1,6 @@
 class TechesController < ApplicationController
   before_action :set_tech, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_and_redirect
   def index
     @teches = Tech.all
   end
@@ -16,7 +16,7 @@ class TechesController < ApplicationController
       @tech.users << current_user
       redirect_to teches_path, :notice => "Cadastrado =)"
     else
-      redirect_to teches_path, :notice => "Visita Técnica lotada ou está chocando horário "
+      redirect_to teches_path, :error => "Visita Técnica lotada ou está chocando horário "
     end
   end
 
@@ -24,9 +24,9 @@ class TechesController < ApplicationController
     @tech = Tech.find(params[:id])
     if @tech.users.include?(current_user)
       @tech.users.delete(current_user)
-      redirect_to teches_path, :notice => "Égua mah tu não vai mais assistir isso"
+      redirect_to teches_path, :alert => "Égua mah tu não vai mais assistir isso"
     else
-      redirect_to teches_path, :notice => "Maxo tu nem tá nessa Visita Técnica"
+      redirect_to teches_path, :error => "Maxo tu nem tá nessa Visita Técnica"
     end
   end
 
@@ -42,7 +42,7 @@ class TechesController < ApplicationController
     end
 
     def checkTime(time)
-      current_user.programs.each do |tech|
+      current_user.teches.each do |tech|
         if tech.time == time
           return false
         end

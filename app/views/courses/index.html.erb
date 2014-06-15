@@ -1,55 +1,80 @@
+<%= render 'navbar' %>
+<%= render 'menu' %>
 <%- model_class = Course -%>
-<div class="page-header">
-  <h1>Cursos</h1>
-</div>
-
-<div class="row">
-
-  <div class="span4">    
-  </div>
-  <div class="span4">
+<div class="page-content"  style="padding: 5% 0px;">
+  <div class="container-fluid">
     <% flash.each do |name, msg| %>
       <% if msg.is_a?(String) %>
-        <div class="alert alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        </div>
+        <% if flash[:error] -%>
+          <div class="alert alert-danger" >
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          </div>
+        <% end %>
+        <% if flash[:alert] -%>
+          <div class="alert alert-warning" >
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          </div>
+        <% end %>
+        <% if flash[:notice] -%>
+          <div class="alert alert-success" >
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          </div>
+        <% end %>        
       <% end %>
-    <% end %>
-  </div>
-  <div class="span4">
-  </div>    
-</div>
+    <% end %>    
+    <h1 class="page-heading">Cursos </h1>
+    <div class="container-masonry">
+      <ol>
+        <% @courses.order(:time).each do |course| %>
+          <li class="item-masonry">
 
-<div class="container"> 
-    <div class="row-fluid pricing-table pricing-three-column">
-      <div class="row">
-          <% @courses.order(:time).each do |course| %>
-            <div class="span4 plan" style="width: 300px;height: 300px;">          
-              <ul>
-                <li class="plan-feature"><%= course.title %></li>
-                <li class="plan-feature">(<%= course.users.count %>/<%= course.limit %>)</li>
-                <li class="plan-feature"><%= course.time %></li>                
+            <div class="the-box full no-border property-card mansory-inner">
+              <img src=<%= course.image %> alt="Image" width="450" height="250">
+              <div class="the-box no-margin no-border bg-success">
+                <h4><%= link_to course.title, show_course_path(course.id)%></h4>
+                <hr>
+                <div class="row">
+                  <div class="col-xs-3">
+
+                    <% if course.users.count < course.limit %>
+                      <p>
+                        <p class="property-type-circle bg-warning">Open</p>
+                      </p>
+                    <% else %>
+                      <p>
+                        <p class="property-type-circle bg-danger">Closed</p>
+                      </p>
+                    <% end %>   
+
+                  </div>
+                  <div class="col-xs-9">
+                    <h1><%= course.time %></h1>
+                    <p>(<%= course.users.count %>/<%= course.limit %>)</p>
+                  </div>
+                </div>
+
                 <% if course.users.include?(current_user)%>
                   <p>
-                    <div class="label label-danger">
-                      <%= link_to 'Cancelar', unsubscribe_course_path(course.id), :method => :put, :class=>"btn btn-danger icon-white icon-ok" %>
-                    </div>
+                    <%= link_to 'Cancelar', unsubscribe_course_path(course.id), :method => :put, :class=>"btn btn-danger btn-block" %>
                   </p>
                 <% else %>
                   <p>
-                    <div class="label label-danger">
-                      <%= link_to 'Cadastrar', subscribe_course_path(course.id), :method => :put, :class=>"btn btn-success icon-white icon-ok" %>
-                    </div>
+                    <%= link_to 'Cadastrar', subscribe_course_path(course.id), :method => :put, :class=>"btn btn-success btn-block" %>
                   </p>
                 <% end %>
-              </ul>
-            </div>
-          <% end %>
-      </div>        
+
+              </div>
+            </div>      
+          </li>
+        <% end %>
+      </ol>
     </div>
+  </div>
 </div>
 
-<div class="form-actions" style="background-color: transparent">
-  <%= link_to 'Voltar', "/index", :class => 'btn btn-info'%>
+<div class="page-content">
+  <%= render 'footer' %>
 </div>

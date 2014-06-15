@@ -1,0 +1,24 @@
+<% if loged_in? %>
+  <div class="top-navbar success-color">
+    <div class="top-navbar-inner">    
+      <div class="logo-brand">
+        
+      </div>    
+      <div class="top-nav-content">
+        <div class="btn-collapse-sidebar-left">        
+        </div>
+        <div class="btn-collapse-sidebar-right">
+        </div>
+        <div class="btn-collapse-nav" data-toggle="collapse" data-target="#main-fixed-nav">       
+        </div>
+        <div class="collapse navbar-collapse" id="main-fixed-nav">
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <%= link_to 'Log out', log_out_path, :class => 'btn btn-warning'%> 
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

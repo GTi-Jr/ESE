@@ -1,6 +1,6 @@
 ActiveAdmin.register Extra do
 
-  permit_params :title, :description, :limit, :price
+  permit_params :title, :description, :limit, :price, :image
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

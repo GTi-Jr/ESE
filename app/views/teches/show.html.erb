@@ -1,34 +1,56 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @tech.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @tech.description %>
-</p>
-
-<p>
-  <strong>Day:</strong>
-  <%= @tech.day %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @tech.time %>
-</p>
-
-<p>
-  <strong>Limit:</strong>
-  <%= @tech.limit %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @tech.price %>
-</p>
-
-<%= link_to 'Edit', edit_tech_path(@tech) %> |
-<%= link_to 'Back', teches_path %>
+<%= render 'navbar' %>
+<%= render 'menu' %>
+<div class="page-content">
+  <div class="container-fluid">
+    <h1 class="page-heading"> <%= @tech.title %> </h1>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel with-nav-tabs panel-warning panel-square panel-no-border">
+          <div class="panel-heading">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#property-description" data-toggle="tab"><%= @tech.title %></a></li>
+          </ul>
+          </div>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="property-description">
+                  <h4><%= @tech.description %></h4>
+                <table class="table table-th-block">
+                  <tbody>
+                    <tr><td class="active">Dia</td><td><%= @tech.day %></td></tr>
+                    <tr><td class="active">Horário</td><td><%= @tech.time %></td></tr>
+                    <tr><td class="active">Limite de Alunos</td><td><%= @tech.limit %></td></tr>
+                    <tr><td class="active">Preço</td><td><%= @tech.price %></td></tr>
+                  </tbody>
+                </table>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">        
+        <div class="panel panel-warning panel-square panel-no-border">
+          <div class="panel-heading" style="text-align:center">
+          <h3>Professor</h3>
+          </div>
+          <div class="the-box no-border full card-info">
+            <div class="the-box no-border text-center no-margin">
+              <h4 class="bolded"><%= @tech.teacher %></h4>
+              <img src="assets/img/avatar/avatar-15.jpg" class="social-avatar has-margin has-light-shadow img-circle" alt="Avatar">
+              <p class="text-muted">
+              <%= @tech.teacher_description %>
+              </p>
+              <p class="social-icon">
+                <a href="#fakelink"><i class="fa fa-facebook icon-xs icon-circle icon-facebook"></i></a>
+                <a href="#fakelink"><i class="fa fa-envelope icon-xs icon-circle icon-google-plus"></i></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>   
+</div>
+<div class="page-content">
+  <%= render 'footer' %>
+</div>

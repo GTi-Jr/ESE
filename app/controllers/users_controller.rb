@@ -2,9 +2,19 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def new
+    @user = User.new
   end
 
-  def create    
+  def create
+    @user = User.new(user_params)
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to root_path, notice: 'Incrição feita com sucesso. Você irá receber por e-mail a sua senha' }
+      else
+        format.html { render action: 'new'}        
+      end
+    end
   end
 
 

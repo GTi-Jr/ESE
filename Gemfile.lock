@@ -42,6 +42,16 @@ GIT
       actionpack (>= 3.2.13)
 
 GIT
+  remote: git://github.com/pagseguro/ruby.git
+  revision: 1b353d4c50b9b3afe6ba7cd5f1a4272bc56553a4
+  specs:
+    pagseguro-oficial (2.0.5)
+      aitch (>= 0.2.1)
+      i18n
+      json
+      nokogiri
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: eeb6060d9df0aac63d2f8cc90895941b30ba1c0f
   specs:
@@ -88,6 +98,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    aitch (0.3.0)
+      activesupport
+      nokogiri (>= 1.6.0)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
@@ -108,6 +121,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.0)
+    font-awesome-rails (4.1.0.0)
+      railties (>= 3.2, < 5.0)
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -135,11 +150,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (5.3.4)
     multi_json (1.10.1)
     node (0.0.2)
       eventmachine
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyamorous (1.0.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
@@ -204,7 +223,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.9)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -236,12 +254,15 @@ DEPENDENCIES
   activeadmin!
   coffee-rails (~> 4.0.0)
   devise!
+  font-awesome-rails
   formtastic!
   inherited_resources!
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
   node
+  pagseguro-oficial!
+  pg
   rails (= 4.1)
   rails_12factor
   ransack!
@@ -249,7 +270,6 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
-  sqlite3
   therubyracer
   turbolinks
   twitter-bootstrap-rails

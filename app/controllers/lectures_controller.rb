@@ -1,6 +1,6 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_and_redirect
 
   def index
     @lectures = Lecture.all
@@ -13,11 +13,11 @@ class LecturesController < ApplicationController
 
   def subscribe
     @lecture = Lecture.find(params[:id])
-      if @lecture.users.count < @lecture.limit && checkTime(@lecture.time)
+      if checkTime(@lecture.time)
       @lecture.users << current_user
       redirect_to lectures_path, :notice => "Cadastrado =)"
     else
-      redirect_to lectures_path, :notice => "Palestra lotada ou está chocando horário "
+      redirect_to lectures_path, :error => "Palestra lotada ou está chocando horário "
     end
   end
 
@@ -25,9 +25,9 @@ class LecturesController < ApplicationController
     @lecture = Lecture.find(params[:id])
     if @lecture.users.include?(current_user)
       @lecture.users.delete(current_user)
-      redirect_to lectures_path, :notice => "Égua mah tu não vai mais assistir isso"
+      redirect_to lectures_path, :alert => "Égua mah tu não vai mais assistir isso"
     else
-      redirect_to lectures_path, :notice => "Maxo tu nem tá nessa Palestra"
+      redirect_to lectures_path, :error => "Maxo tu nem tá nessa Palestra"
     end
   end
 
@@ -43,7 +43,7 @@ class LecturesController < ApplicationController
     end
 
     def checkTime(time)
-      current_user.programs.each do |course|
+      current_user.lectures.each do |course|
         if course.time == time
           return false
         end

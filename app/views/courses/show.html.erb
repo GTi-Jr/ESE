@@ -1,34 +1,56 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @course.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @course.description %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @course.time %>
-</p>
-
-<p>
-  <strong>Day:</strong>
-  <%= @course.day %>
-</p>
-
-<p>
-  <strong>Limit:</strong>
-  <%= @course.limit %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @course.price %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+<%= render 'navbar' %>
+<%= render 'menu' %>
+<div class="page-content">
+  <div class="container-fluid">
+    <h1 class="page-heading"> <%= @course.title %> </h1>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel with-nav-tabs panel-warning panel-square panel-no-border">
+          <div class="panel-heading">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#property-description" data-toggle="tab"><%= @course.title %></a></li>
+          </ul>
+          </div>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="property-description">
+                  <h4><%= @course.description %></h4>
+                <table class="table table-th-block">
+                  <tbody>
+                    <tr><td class="active">Dia</td><td><%= @course.day %></td></tr>
+                    <tr><td class="active">Horário</td><td><%= @course.time %></td></tr>
+                    <tr><td class="active">Limite de Alunos</td><td><%= @course.limit %></td></tr>
+                    <tr><td class="active">Preço</td><td><%= @course.price %></td></tr>
+                  </tbody>
+                </table>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">        
+        <div class="panel panel-warning panel-square panel-no-border">
+          <div class="panel-heading" style="text-align:center">
+          <h3>Professor</h3>
+          </div>
+          <div class="the-box no-border full card-info">
+            <div class="the-box no-border text-center no-margin">
+              <h4 class="bolded"><%= @course.teacher %></h4>
+              <img src="assets/img/avatar/avatar-15.jpg" class="social-avatar has-margin has-light-shadow img-circle" alt="Avatar">
+              <p class="text-muted">
+              <%= @course.teacher_description %>
+              </p>
+              <p class="social-icon">
+                <a href="#fakelink"><i class="fa fa-facebook icon-xs icon-circle icon-facebook"></i></a>
+                <a href="#fakelink"><i class="fa fa-envelope icon-xs icon-circle icon-google-plus"></i></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>   
+</div>
+<div class="page-content">
+  <%= render 'footer' %>
+</div>

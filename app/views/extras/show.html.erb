@@ -1,24 +1,50 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @extra.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @extra.description %>
-</p>
-
-<p>
-  <strong>Limit:</strong>
-  <%= @extra.limit %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @extra.price %>
-</p>
-
-<%= link_to 'Edit', edit_extra_path(@extra) %> |
-<%= link_to 'Back', extras_path %>
+<%= render 'navbar' %>
+<%= render 'menu' %>
+<div class="page-content">
+  <div class="container-fluid">
+    <h1 class="page-heading"> <%= @extra.title %> </h1>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel with-nav-tabs panel-warning panel-square panel-no-border">
+          <div class="panel-heading">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#property-description" data-toggle="tab"><%= @extra.title %></a></li>
+          </ul>
+          </div>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="property-description">
+                  <h4><%= @extra.title %></h4>
+                <table class="table table-th-block">
+                  <tbody>
+                    <tr><td class="active">Estoque</td><td><%= @extra.limit - @extra.users.count %></td></tr>
+                    <tr><td class="active">Preço</td><td><%= @extra.price %></td></tr>
+                  </tbody>
+                </table>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">        
+        <div class="panel panel-warning panel-square panel-no-border">
+          <div class="panel-heading" style="text-align:center">
+          <h3>Produto</h3>
+          </div>
+          <div class="the-box no-border full card-info">
+            <div class="the-box no-border text-center no-margin">
+              <h4 class="bolded"><%= @extra.title %></h4>
+              <img src=<%= @extra.image %> class="social-avatar has-margin has-light-shadow img-circle" alt="Avatar">
+              <p class="text-muted">
+              <%= @extra.description %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>   
+</div>
+<div class="page-content">
+  <%= render 'footer' %>
+</div>

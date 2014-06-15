@@ -1,8 +1,10 @@
 class SessionController < ApplicationController
 
    skip_before_filter :verify_authenticity_token, :only => [:create]
+   before_action :check_and_redirect, :only => [:index]
 
   def index
+
   end
 
   def new

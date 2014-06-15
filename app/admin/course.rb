@@ -1,6 +1,6 @@
 ActiveAdmin.register Course do
 
-  permit_params :title, :description, :time, :day, :limit, :price
+  permit_params :title, :description, :time, :day, :limit, :price, :image, :teacher, :teacher_description
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
