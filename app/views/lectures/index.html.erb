@@ -30,9 +30,10 @@
       <ol>
         <% @lectures.order(:time).each do |lecture| %>
           <li class="item-masonry">
-
             <div class="the-box full no-border property-card mansory-inner">
-              <img src=<%= lecture.image %>  alt="Image" width="450" height="250">
+              <%= link_to show_lecture_path(lecture.id) do %>
+                <img src=<%= lecture.image %>  alt="Image" width="450" height="250">
+              <% end %>
               <div class="the-box no-margin no-border bg-success">
                 <h4><%= link_to lecture.title, show_lecture_path(lecture.id)%></h4>
                 <hr>
@@ -43,8 +44,8 @@
                     </p>           
                   </div>
                   <div class="col-xs-9">
-                    <h1>Dia <%= lecture.day %></h1>
-                    <h2><%= lecture.time %></h2>
+                    <h2><%= "Dia #{lecture.day} - #{lecture.time}" %></h1>
+                    <h4><%= lecture.price %> R$</h2>
                   </div>
                 </div>
 
@@ -57,7 +58,6 @@
                     <%= link_to 'Cadastrar', subscribe_lecture_path(lecture.id), :method => :put, :class=>"btn btn-success btn-block" %>
                   </p>
                 <% end %>
-
               </div>
             </div>      
           </li>

@@ -13,11 +13,16 @@ class CoursesController < ApplicationController
 
   def subscribe
     @course = Course.find(params[:id])
-      if @course.users.count < @course.limit && checkTime(@course.time)
-      @course.users << current_user
-      redirect_to courses_path, :notice => "Cadastrado =)"
+    check = checkTime(@course.time, @course.day)
+    if @course.users.count < @course.limit
+      if check == true
+        @course.users << current_user
+        redirect_to :back, :notice => "Cadastrado =)"
+      else
+        redirect_to :back, :flash => { :error => "Está chocando horário com #{check.title}"}
+      end
     else
-      redirect_to courses_path, :error => "Programação lotado ou está chocando horário "
+      redirect_to :back, :flash => { :error => "Lotado" }
     end
   end
 
@@ -25,9 +30,9 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     if @course.users.include?(current_user)
       @course.users.delete(current_user)
-      redirect_to courses_path, :alert => "Égua mah tu não vai mais assistir isso"
+      redirect_to :back, :alert => "Égua mah tu não vai mais assistir isso"
     else
-      redirect_to courses_path, :error => "Maxo tu nem tá nessa programação"
+      redirect_to :back, :flash => { :error => "Maxo tu nem tá nessa programação" }
     end
   end
 
@@ -40,14 +45,5 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:title, :description, :time, :day, :limit, :price)
-    end
-
-    def checkTime(time)
-      current_user.courses.each do |course|
-        if course.time == time
-          return false
-        end
-      end
-      return true
     end
 end

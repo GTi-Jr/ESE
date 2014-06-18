@@ -11,4 +11,10 @@ class UserMailer < ActionMailer::Base
 
     mail to: @user.email, subject: 'Sua senha de acesso =D'
   end
+
+  def lost_password (user)
+    @user = user
+
+    mail to: @user.email, subject: 'Maxo a tua nova senha =P'
+  end
 end

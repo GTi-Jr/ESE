@@ -15,9 +15,9 @@ class ExtrasController < ApplicationController
     @extra = Extra.find(params[:id])
       if @extra.users.count
       @extra.users << current_user
-      redirect_to extras_path, :notice => "Comprado =)"
+      redirect_to :back, :notice => "Comprado =)"
     else
-      redirect_to extras_path, :error => "Esgotado mah"
+      redirect_to :back, :flash => {:error => "Esgotado mah"}
     end
   end
 
@@ -25,9 +25,9 @@ class ExtrasController < ApplicationController
     @extra = Extra.find(params[:id])
     if @extra.users.include?(current_user)
       @extra.users.delete(current_user)
-      redirect_to extras_path, :alert => "Égua mah tu não vai querer isso"
+      redirect_to :back, :alert => "Égua mah tu não vai querer isso"
     else
-      redirect_to extras_path, :error => "Maxo tu nem comprou essa xibata"
+      redirect_to :back, :error => "Maxo tu nem comprou essa xibata"
     end
   end
 

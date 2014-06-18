@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
   /Email/
-  after_save :password_notification
+  after_save :password_notification, :if => :password_changed?
 
   /Validações/
   validates :name, :presence => true
@@ -32,8 +32,6 @@ class User < ActiveRecord::Base
   private
   def password_notification
     UserMailer.password_send(self).deliver
-
-
   end
 
 end

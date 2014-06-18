@@ -22,4 +22,41 @@ class ApplicationController < ActionController::Base
     end
   end
 	helper_method :check_and_redirect
+
+
+  def checkTime(time, day)
+    order.each do |o|
+      if o.time == time && o.day == day
+        return o
+      end
+    end
+    return true
+  end
+
+
+  def order
+    @order = []
+    @total = 0
+
+    current_user.extras.each do |extra|
+      @order << extra
+    end
+
+    current_user.lectures.each do |lecture|
+      @order << lecture
+    end
+
+    current_user.courses.each do |course|
+      @order << course
+    end
+
+    current_user.teches.each do |tech|
+      @order << tech
+    end
+
+    @order.each do |o|
+      @total = @total + o.price
+    end
+  end
+  helper_method :order
 end

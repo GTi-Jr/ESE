@@ -11,12 +11,17 @@ class TechesController < ApplicationController
   end
 
   def subscribe
-    @tech = Tech.find(params[:id])
-      if @tech.users.count < @tech.limit && checkTime(@tech.time)
-      @tech.users << current_user
-      redirect_to teches_path, :notice => "Cadastrado =)"
+    @tech = Tech.find(params[:id])    
+    check = checkTime(@tech.time, @tech.day)
+    if @tech.users.count < @tech.limit
+      if check
+        @tech.users << current_user
+        redirect_to :back, :notice => "Cadastrado =)"
+      else
+        redirect_to :back, :flash => { :error => "Está chocando horário com #{check.title}"}
+      end
     else
-      redirect_to teches_path, :error => "Visita Técnica lotada ou está chocando horário "
+      redirect_to :back, :flash => { :error => "Lotado" }
     end
   end
 
@@ -24,29 +29,20 @@ class TechesController < ApplicationController
     @tech = Tech.find(params[:id])
     if @tech.users.include?(current_user)
       @tech.users.delete(current_user)
-      redirect_to teches_path, :alert => "Égua mah tu não vai mais assistir isso"
+      redirect_to :back, :alert => "Égua mah tu não vai mais assistir isso"
     else
-      redirect_to teches_path, :error => "Maxo tu nem tá nessa Visita Técnica"
+      redirect_to :back, :error => "Maxo tu nem tá nessa Visita Técnica"
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tech
-      @tech = Tech.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tech
+    @tech = Tech.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tech_params
-      params.require(:tech).permit(:title, :description, :day, :time, :limit, :price)
-    end
-
-    def checkTime(time)
-      current_user.teches.each do |tech|
-        if tech.time == time
-          return false
-        end
-      end
-      return true
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tech_params
+    params.require(:tech).permit(:title, :description, :day, :time, :limit, :price)
+  end
 end

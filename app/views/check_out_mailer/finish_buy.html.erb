@@ -1,0 +1,27 @@
+<h1>Diz aew <%= @user.name %>,</h1>
+
+<p>Sua compra foi finalizada</p>
+
+<div class="table-responsive">
+  <table class="table table-th-block table-striped table-dark">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order.each do |order| %>
+        <tr>
+          <td><img src=<%= order.image %> style="width: 100px;" alt="Image"></td>
+          <td><strong><%= order.title %></strong></td>
+          <td><strong class="text-danger"><%= order.price %> R$</strong></td>                                  
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div><!-- /.table-responsive -->
+<p>Essa foi a sua compra</p>
+<p>Assim que ela for confirmada você receberá outro e-mail</p>
+<p>Até o/</p>

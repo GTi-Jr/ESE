@@ -25,37 +25,30 @@
         <% end %>        
       <% end %>
     <% end %>    
-    <h1 class="page-heading">Cursos </h1>
+    <h1 class="page-heading">Cursos</h1>
     <div class="container-masonry">
       <ol>
         <% @courses.order(:time).each do |course| %>
           <li class="item-masonry">
-
             <div class="the-box full no-border property-card mansory-inner">
-              <img src=<%= course.image %> alt="Image" width="450" height="250">
+              <%= link_to show_course_path(course.id) do %>
+                <img src=<%= course.image %>  alt="Image" width="450" height="250">
+              <% end %>
+              
               <div class="the-box no-margin no-border bg-success">
                 <h4><%= link_to course.title, show_course_path(course.id)%></h4>
                 <hr>
                 <div class="row">
-                  <div class="col-xs-3">
-
-                    <% if course.users.count < course.limit %>
-                      <p>
-                        <p class="property-type-circle bg-warning">Open</p>
-                      </p>
-                    <% else %>
-                      <p>
-                        <p class="property-type-circle bg-danger">Closed</p>
-                      </p>
-                    <% end %>   
-
+                  <div class="col-xs-3">                    
+                    <p>
+                      <p class="property-type-circle bg-warning">Open</p>
+                    </p>           
                   </div>
                   <div class="col-xs-9">
-                    <h1><%= course.time %></h1>
-                    <p>(<%= course.users.count %>/<%= course.limit %>)</p>
+                    <h2><%= "Dia #{course.day} - #{course.time}" %></h1>
+                    <h4><%= course.price %> R$</h2>
                   </div>
                 </div>
-
                 <% if course.users.include?(current_user)%>
                   <p>
                     <%= link_to 'Cancelar', unsubscribe_course_path(course.id), :method => :put, :class=>"btn btn-danger btn-block" %>
@@ -65,7 +58,6 @@
                     <%= link_to 'Cadastrar', subscribe_course_path(course.id), :method => :put, :class=>"btn btn-success btn-block" %>
                   </p>
                 <% end %>
-
               </div>
             </div>      
           </li>
@@ -74,7 +66,6 @@
     </div>
   </div>
 </div>
-
 <div class="page-content">
   <%= render 'footer' %>
 </div>

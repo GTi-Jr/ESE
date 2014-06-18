@@ -1,17 +1,17 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: SEC_development
+  database: ecejpro_development
   pool: 5
 
-test: 
+test:
   adapter: postgresql
   encoding: utf8
-  database: SEC_test
+  database: ecejpro_test
   pool: 5
 
 production:
   adapter: postgresql
   encoding: utf8
-  database: SEC_production
+  database: ecejpro_production
   pool: 5

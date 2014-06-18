@@ -13,11 +13,12 @@ class LecturesController < ApplicationController
 
   def subscribe
     @lecture = Lecture.find(params[:id])
-      if checkTime(@lecture.time)
+    check = checkTime(@lecture.time, @lecture.day)
+      if check
       @lecture.users << current_user
-      redirect_to lectures_path, :notice => "Cadastrado =)"
+      redirect_to :back, :notice => "Cadastrado =)"
     else
-      redirect_to lectures_path, :error => "Palestra lotada ou está chocando horário "
+      redirect_to :back, :flash => {:error => "Está chocando horário com #{check.title}"}
     end
   end
 
@@ -25,29 +26,20 @@ class LecturesController < ApplicationController
     @lecture = Lecture.find(params[:id])
     if @lecture.users.include?(current_user)
       @lecture.users.delete(current_user)
-      redirect_to lectures_path, :alert => "Égua mah tu não vai mais assistir isso"
+      redirect_to :back, :alert => "Égua mah tu não vai mais assistir isso"
     else
-      redirect_to lectures_path, :error => "Maxo tu nem tá nessa Palestra"
+      redirect_to :back, :error => "Maxo tu nem tá nessa Palestra"
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_lecture
-      @lecture = Lecture.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_lecture
+    @lecture = Lecture.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def lecture_params
-      params.require(:lecture).permit(:title, :description, :time, :day, :price)
-    end
-
-    def checkTime(time)
-      current_user.lectures.each do |course|
-        if course.time == time
-          return false
-        end
-      end
-      return true
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def lecture_params
+    params.require(:lecture).permit(:title, :description, :time, :day, :price)
+  end
 end

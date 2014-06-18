@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   root 'session#new'
 
   /Rotas do Pagseguro /
-  post "payment/:price" => "checkout#create", :as => "payment"
+  post "payment" => "checkout#create", :as => "payment"
   get "payment" => "checkout#new"
 
   /Rotas para Usuários/
   get "entry" => "users#new", :as => "users"
   post "entry" => "users#create"
+  get "recover" => "users#recover", :as => "recover"
+  put "recover" => "users#recover_mail", :as => "recover_mail"
 
   / Rotas para Cursos/  
   put "subscribe_course/:id" => "courses#subscribe", :as => "subscribe_course"
@@ -26,8 +28,8 @@ Rails.application.routes.draw do
   get 'course/:id' => 'courses#show', :as => "show_course"
 
   / Rotas para Extra/  
-  put "buy/:id" => "extras#buy", :as => "buy_extra"
-  put "unbuy/:id" => "extras#unbuy", :as => "unbuy_extra"
+  put "subscribe_extra/:id" => "extras#buy", :as => "buy_extra"
+  put "unsubscribe_extra/:id" => "extras#unbuy", :as => "unbuy_extra"
   get 'extras/' => 'extras#index', :as => "extras"  
   get 'extra/:id' => 'extras#show', :as => "show_extra"
 

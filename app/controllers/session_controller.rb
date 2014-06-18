@@ -4,6 +4,9 @@ class SessionController < ApplicationController
    before_action :check_and_redirect, :only => [:index]
 
   def index
+    @lectures = Lecture.all.count
+    @courses = Course.all.count
+    @teches = Tech.all.count
 
   end
 
@@ -22,6 +25,7 @@ class SessionController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:price] = nil
     redirect_to root_url, :notice => "Logged out!"
   end
   

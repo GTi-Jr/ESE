@@ -32,7 +32,9 @@
           <li class="item-masonry">
 
             <div class="the-box full no-border property-card mansory-inner">
-              <img src=<%= tech.image %>  alt="Image" width="450" height="250">
+              <%= link_to show_tech_path(tech.id) do %>
+                <img src=<%= tech.image %>  alt="Image" width="450" height="250">
+              <% end %>
               <div class="the-box no-margin no-border bg-success">
                 <h4><%= link_to tech.title, show_tech_path(tech.id)%></h4>
                 <hr>
@@ -51,8 +53,8 @@
 
                   </div>
                   <div class="col-xs-9">
-                    <h1><%= tech.time %></h1>
-                    <p>(<%= tech.users.count %>/<%= tech.limit %>)</p>
+                    <h2><%= "Dia #{tech.day} - #{tech.time}" %></h1>
+                    <h4><%= tech.price %> R$</h2>
                   </div>
                 </div>
 

@@ -24,6 +24,7 @@
                       <th>Produto</th>
                       <th>Descrição</th>
                       <th>Preço</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -32,6 +33,7 @@
                         <td><img src=<%= order.image %> style="width: 100px;" alt="Image"></td>
                         <td><strong><%= order.title %></strong></td>
                         <td><strong class="text-danger"><%= order.price %> R$</strong></td>
+                        <td><a href=<%= "/unsubscribe_#{order.class.name.downcase}/#{order.id}" %> data-method="put"><i class="fa fa-times"></i></a></td>                        
                       </tr>
                     <% end %>
                   </tbody>
@@ -55,7 +57,7 @@
             <div class="panel-footer">
               <div class="row">
                 <div class="col-sm-6 text-right">
-                  <a href=<%= "/payment/" << @total.to_s%> class="btn btn-warning" data-method="post"><i class="fa fa-check"></i> Finish</a>
+                  <a href=<%= "/payment"%> class="btn btn-warning" target="_blank" data-method="post"><i class="fa fa-check"></i> Finish</a>
                 </div><!-- /.col-sm-6 -->
               </div><!-- /.row -->
             </div><!-- /.panel-footer -->

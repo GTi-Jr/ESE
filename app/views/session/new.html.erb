@@ -4,15 +4,30 @@
   </div>
   <div class="login-wrapper">    
     <%= form_tag do %>
-      <% flash.each do |name, msg| %>
-      <% if msg.is_a?(String) %>
-        <div class="alert alert-<%= name == :notice ? "success" : "warning" %>">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-         </div>
+      <% flash.each do |name, msg| %>      
+        <% if msg.is_a?(String) %>
+          <% if flash[:error] -%>
+            <div class="alert alert-danger" >
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            </div>
+          <% end %>
+
+          <% if flash[:alert] -%>
+            <div class="alert alert-warning" >
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            </div>
+          <% end %>
+
+          <% if flash[:notice] -%>
+            <div class="alert alert-success" >
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
-
       <div class="form-group has-feedback lg left-feedback no-label">
         <%= text_field_tag :email, params[:email], class: "form-control no-border input-lg rounded", placeholder: "Enter Email" %>
       </div>
@@ -25,7 +40,7 @@
     </form>
     <%end%>
 
-    <p class="text-center"><strong><a href="/forgot-password">Esqueceu a senha?</a></strong></p>
+    <p class="text-center"><strong><a href="/recover">Esqueceu a senha?</a></strong></p>
     <p class="text-center">ou</p>
     <p class="text-center"><strong><a href="/entry">Inscrição no Evento</a></strong></p>
   </div><!-- /.login-wrapper -->

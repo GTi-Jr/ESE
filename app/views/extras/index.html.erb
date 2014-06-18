@@ -31,7 +31,9 @@
         <% @extras.order(:limit).each do |extra| %>
           <li class="item-masonry">
             <div class="the-box full no-border property-card mansory-inner">
-              <img src=<%= extra.image %>  alt="Image" width="450" height="250">
+              <%= link_to show_extra_path(extra.id) do %>
+                <img src=<%= extra.image %>  alt="Image" width="450" height="250">
+              <% end %>
               <div class="the-box no-margin no-border bg-success">
                 <h4><%= link_to extra.title, show_extra_path(extra.id)%></h4>
                 <hr>
@@ -50,7 +52,7 @@
                                      
                   </div>
                   <div class="col-xs-9">
-                    <h1>(<%= extra.users.count %>/<%= extra.limit %>)</h1>
+                    <h3><%= extra.price %> R$</h3>
                   </div>
                 </div>
 

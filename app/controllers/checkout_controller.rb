@@ -1,31 +1,13 @@
 class CheckoutController < ApplicationController
+  before_action :check_and_redirect
+
   def new
-    @order = []
-    @total = 0
-
-    current_user.extras.each do |extra|
-      @order << extra
-    end
-
-    current_user.lectures.each do |lecture|
-      @order << lecture
-    end
-
-    current_user.courses.each do |course|
-      @order << course
-    end
-
-    current_user.teches.each do |tech|
-      @order << tech
-    end
-
-    @order.each do |o|
-      @total = @total + o.price
-    end
-
+    order
     if @total == 0
       redirect_to "/index", :alert => "Você ainda não tem itens para ser comprados"
     end
+
+    session[:price] = @total
   end
 
 
@@ -41,10 +23,11 @@ class CheckoutController < ApplicationController
       payment.items << {
         id: 1,
         description: "Pagamento do Evento - SEC",
-        amount: params[:price]
+        amount: session[:price]
       }
 
     response = payment.register
+    finish_bought
 
     # Caso o processo de checkout tenha dado errado, lança uma exceção.
     # Assim, um serviço de rastreamento de exceções ou até mesmo a gem
@@ -56,5 +39,10 @@ class CheckoutController < ApplicationController
     else
       redirect_to response.url
     end
+  end
+
+  private
+  def finish_bought
+    CheckOutMailer.finish_buy(current_user, order).deliver
   end
 end
