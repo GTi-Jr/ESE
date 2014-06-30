@@ -32,7 +32,7 @@
               <fieldset>
                 <%= form_tag('/recover', method: :put) do %>                 
                   <div class="form-group">
-                    <%= text_field_tag :email, params[:email] %>
+                    <%= text_field_tag :email, params[:email], placeholder: 'Qual o seu e-mail?' %>
                   </div>
                   <br><br>
                   <p class="btn btn-success btn-block">

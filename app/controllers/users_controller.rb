@@ -24,8 +24,7 @@ class UsersController < ApplicationController
     user = User.find_by email: params[:email]
     if user != nil
       user.password = SecureRandom.urlsafe_base64(6,false)
-      user.save
-      password_notification(user)      
+      user.save      
       redirect_to "/", :notice => "Um e-mail foi enviado com sua nova senha"
     else
       redirect_to :back, :alert => "E-mail não cadastrado"     
@@ -34,17 +33,13 @@ class UsersController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :age, :serial, :password, :email, :phone, :course, :facebook, :has_paid)
-    end
-
-    def password_notification(user)
-      UserMailer.lost_password(user).deliver
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:name, :age, :serial, :password, :email, :phone, :course, :facebook, :has_paid)
+  end
 end

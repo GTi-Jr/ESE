@@ -1,8 +1,12 @@
 <div class="login tooltips">  
   <div class="login-header text-center" style="padding: 1% 0 0 0">
-    <%= image_tag("logo.png") %>   
+    <%= image_tag("logo.png") %>
   </div>
-  <div class="login-wrapper">    
+
+  <div class="login-wrapper">
+  <a href="/entry"> 
+    <div class="text-center alert alert-warning alert-bold-border fade in alert-dismissable">Inscrição</div>
+  </a>
     <%= form_tag do %>
       <% flash.each do |name, msg| %>      
         <% if msg.is_a?(String) %>
@@ -27,7 +31,7 @@
             </div>
           <% end %>
         <% end %>
-      <% end %>
+      <% end %>      
       <div class="form-group has-feedback lg left-feedback no-label">
         <%= text_field_tag :email, params[:email], class: "form-control no-border input-lg rounded", placeholder: "Enter Email" %>
       </div>
@@ -39,9 +43,7 @@
       </div>
     </form>
     <%end%>
-
     <p class="text-center"><strong><a href="/recover">Esqueceu a senha?</a></strong></p>
-    <p class="text-center">ou</p>
-    <p class="text-center"><strong><a href="/entry">Inscrição no Evento</a></strong></p>
+    
   </div><!-- /.login-wrapper -->
 </div>
