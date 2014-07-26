@@ -1,21 +1,25 @@
 class LecturesController < ApplicationController
   before_action :set_lecture, only: [:show, :edit, :update, :destroy]
-  before_action :check_and_redirect
+  before_action :check_and_redirect, except: [:show]
 
   def index
     @lectures = Lecture.all
   end
 
   def show
-    @lecture = Lecture.find(params[:id])
-    @users = @lecture.users
+    if(admin_user_signed_in?)
+      @lecture = Lecture.find(params[:id])
+      @users = @lecture.users
 
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = LecturePdf.new(@lecture)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = LecturePdf.new(@lecture)
+          send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+        end
       end
+    else
+      check_and_redirect
     end
   end
 

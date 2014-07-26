@@ -1,20 +1,24 @@
 class TechesController < ApplicationController
   before_action :set_tech, only: [:show, :edit, :update, :destroy]
-  before_action :check_and_redirect
+  before_action :check_and_redirect, except: [:show]
   def index
     @teches = Tech.all
   end
 
   def show
-    @tech = Tech.find(params[:id])
-    @users = @tech.users
+    if(admin_user_signed_in?)
+      @tech = Tech.find(params[:id])
+      @users = @tech.users
 
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = TechPdf.new(@tech)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = TechPdf.new(@tech)
+          send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+        end
       end
+    else
+      check_and_redirect
     end
   end
 

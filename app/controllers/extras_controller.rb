@@ -1,21 +1,25 @@
 class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
-  before_action :check_and_redirect
+  before_action :check_and_redirect, except: [:show]
 
   def index
     @extras = Extra.all
   end
 
   def show
-    @extra = Extra.find(params[:id])
-    @users = @extra.users
+    if(admin_user_signed_in?)
+      @extra = Extra.find(params[:id])
+      @users = @extra.users
 
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ExtraPdf.new(@extra)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = ExtraPdf.new(@extra)
+          send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+        end
       end
+    else
+      check_and_redirect
     end
   end
 

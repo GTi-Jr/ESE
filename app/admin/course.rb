@@ -27,6 +27,6 @@ ActiveAdmin.register Course do
     column "Relatório" do |course|
       link_to "PDF", "../course/#{course.id}.pdf"
     end
-  end
-  
+    actions
+  end  
 end
