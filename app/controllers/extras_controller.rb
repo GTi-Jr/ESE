@@ -9,6 +9,14 @@ class ExtrasController < ApplicationController
   def show
     @extra = Extra.find(params[:id])
     @users = @extra.users
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ExtraPdf.new(@extra)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
   end
 
   def buy

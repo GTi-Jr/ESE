@@ -7,7 +7,7 @@ class CheckoutController < ApplicationController
       redirect_to "/index", :alert => "Você ainda não tem itens para ser comprados"
     end
 
-    session[:price] = @total
+    session[:price] = (@total + @total/20)
   end
 
 

@@ -8,6 +8,14 @@ class TechesController < ApplicationController
   def show
     @tech = Tech.find(params[:id])
     @users = @tech.users
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = TechPdf.new(@tech)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
   end
 
   def subscribe

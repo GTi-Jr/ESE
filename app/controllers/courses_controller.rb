@@ -9,6 +9,14 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @users = @course.users
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = CoursePdf.new(@course)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
   end
 
   def subscribe

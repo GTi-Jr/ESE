@@ -15,7 +15,11 @@
               <h4 class="small-heading more-margin-bottom">Reveja o seu pedido</h4>
               <div class="alert alert-warning alert-block fade in alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <strong>Por favor cheque antes de confirmar !</strong>
+                <strong>Por favor cheque antes de confirmar !
+                  <% if @pack != nil%>
+                    Você está com o Pacote <%= @pack.title%>
+                  <% end %>
+                </strong>
               </div>
               <div class="table-responsive">
                 <table class="table table-th-block table-striped table-dark">
@@ -33,12 +37,23 @@
                         <td><img src=<%= order.image %> style="width: 100px;" alt="Image"></td>
                         <td><strong><%= order.title %></strong></td>
                         <td><strong class="text-danger"><%= order.price %> R$</strong></td>
-                        <td><a href=<%= "/unsubscribe_#{order.class.name.downcase}/#{order.id}" %> data-method="put"><i class="fa fa-times"></i></a></td>                        
+                        <td><a href=<%= "/unsubscribe_#{order.class.name.downcase}/#{order.id}" %> data-method="put"><i class="fa fa-times"></i></a></td>
                       </tr>
                     <% end %>
                   </tbody>
                 </table>
-              </div><!-- /.table-responsive -->              
+              </div>
+              <% if @pack != nil %>
+                <div class="table-responsive">
+                  <table class="table table-th-block table-striped table-dark">
+                    <thead>
+                      <tr>
+                        <th>Desconto - <%= @pack.price %> R$ </th>                      
+                      </tr>
+                    </thead>                 
+                  </table>
+                </div>
+              <% end %>             
               <hr>              
               <div class="row">
                 <div class="col-sm-6">
@@ -49,23 +64,23 @@
                       <div>
                         <p class="form-control-static text-danger"><%= @total %> R$</p>
                       </div>
-                    </div><!-- /.form-group -->
+                    </div>
                   </form>
-                </div><!-- /.col-sm-6 -->
-              </div><!-- /.row -->              
-            </div><!-- /.panel-body -->
+                </div>
+              </div>      
+            </div>
             <div class="panel-footer">
               <div class="row">
                 <div class="col-sm-6 text-right">
                   <a href=<%= "/payment"%> class="btn btn-warning" target="_blank" data-method="post"><i class="fa fa-check"></i> Finish</a>
-                </div><!-- /.col-sm-6 -->
-              </div><!-- /.row -->
-            </div><!-- /.panel-footer -->
+                </div>
+              </div>
+            </div>
           </div>
-        </div><!-- /.tab-content -->
-      </div><!-- /.collapse in -->
+        </div>
+      </div>
     </div>
-  </div><!-- /.container-fluid -->
+  </div>
 </div>
 <div class="page-content">
   <%= render 'footer' %>
