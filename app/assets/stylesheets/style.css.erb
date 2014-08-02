@@ -110,7 +110,7 @@ LOGIN, FORGOT PASS, REGISTER AND LOCK SCREEN
 ----------------------------------------------
 **/
 body.login{
-	background: #37BC9B;
+	background: <%= PRIMARY_COLOR %>;
 	padding: 0;
 }
 
@@ -224,7 +224,7 @@ NAVBAR
 
 /** TOP NAV SUCCESS COLOR **/
 .top-navbar.success-color{
-	background: #37BC9B;
+	background: <%= PRIMARY_COLOR %>;
 }
 .top-navbar.success-color .label.label-success,
 .top-navbar.success-color .badge.badge-success{
@@ -1341,7 +1341,7 @@ ul.sidebar-menu.online-user li a .user-status.success	{background: #8CC152;}
 ul.sidebar-menu.online-user li a .user-status.danger	{background: #E9573F;}
 ul.sidebar-menu.online-user li a .user-status.warning	{background: #F6BB42;}
 ul.sidebar-menu.online-user li a .user-status.info		{background: #3BAFDA;}
-ul.sidebar-menu.online-user li a .user-status.primary	{background: #37BC9B;}
+ul.sidebar-menu.online-user li a .user-status.primary	{background: <%= PRIMARY_COLOR %>;}
 ul.sidebar-menu.sidebar-notification{
 	margin-bottom: 30px;
 }
@@ -1752,7 +1752,7 @@ TYPOGRAPY
 	margin: 0 3px;
 }
 hr						{margin: 30px 0;}
-a						{color: #37BC9B}
+a						{color: <%= PRIMARY_COLOR %>}
 a:hover					{color: #29AF8E}
 a:focus					{color: #29AF8E}
 .text-muted {
@@ -1765,7 +1765,7 @@ h4.text-primary,
 h5.text-primary,
 h6.text-primary,
 .text-primary {
-	color: #37BC9B;
+	color: <%= PRIMARY_COLOR %>;
 }
 h1.text-success,
 h2.text-success,
@@ -1833,7 +1833,7 @@ a.text-danger:hover 		{color: #D8482C;}
 	color: #fff;
 	color: rgba(255,255,255,0.7);
 }
-.bg-primary 				{background-color: #37BC9B;}
+.bg-primary 				{background-color: <%= PRIMARY_COLOR %>;}
 a.bg-primary:hover 		{background-color: #29A0CB;}
 .bg-success 				{background-color: #8CC152;}
 a.bg-success:hover 		{background-color: #c1e2b3;}
@@ -2007,7 +2007,7 @@ BREADCRUMB
 }
 
 .breadcrumb.default 					{background-color: #fff;}
-.breadcrumb.primary 					{background-color: #37BC9B;}
+.breadcrumb.primary 					{background-color: <%= PRIMARY_COLOR %>;}
 .breadcrumb.success 					{background-color: #8CC152;}
 .breadcrumb.info 					{background-color: #3BAFDA;}
 .breadcrumb.danger 					{background-color: #E9573F;}
@@ -2038,7 +2038,7 @@ PROGRESS BAR
 }
 .progress.progress-sm.progress-striped .progress-bar {background-size: 20px 20px;}
 .progress.progress-xs.progress-striped .progress-bar {background-size: 10px 10px;}
-.progress-bar-primary 			{background-color: #37BC9B;}
+.progress-bar-primary 			{background-color: <%= PRIMARY_COLOR %>;}
 .progress-bar-success 			{background-color: #8CC152;}
 .progress-bar-info 				{background-color: #3BAFDA;}
 .progress-bar-warning 			{background-color: #F6BB42;}
@@ -2231,21 +2231,21 @@ a.block-collapse {
 }
 
 
-.panel-primary {border-color: #37BC9B;}
+.panel-primary {border-color: <%= PRIMARY_COLOR %>;}
 .panel-primary > .panel-heading {
 	color: #fff;
-	background-color: #37BC9B;
-	border-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
+	border-color: <%= PRIMARY_COLOR %>;
 }
 .panel-primary > .panel-heading + .panel-collapse .panel-body {
-	border-top-color: #37BC9B;
+	border-top-color: <%= PRIMARY_COLOR %>;
 }
 .panel-primary > .panel-footer + .panel-collapse .panel-body {
-	border-bottom-color: #37BC9B;
+	border-bottom-color: <%= PRIMARY_COLOR %>;
 }
 .panel-primary.panel-block-color > .panel-footer{
 	color: #fff;
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 	border-top: none;
 }
 .panel-primary.panel-block-color > .panel-body.bg-primary{
@@ -2270,7 +2270,7 @@ a.block-collapse {
 .with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
 	color: #434A54;
 	background-color: #fff;
-	border-color: #37BC9B;
+	border-color: <%= PRIMARY_COLOR %>;
 	border-bottom-color: transparent;
 }
 
@@ -2952,7 +2952,7 @@ PAGINATION
 .pager.primary > li > span,
 .pagination.primary > li > a,
 .pagination.primary > li > span {
-	color: #37BC9B;
+	color: <%= PRIMARY_COLOR %>;
 }
 .pagination.primary > .active > a,
 .pagination.primary > .active > span,
@@ -2960,8 +2960,8 @@ PAGINATION
 .pagination.primary > .active > span:hover,
 .pagination.primary > .active > a:focus,
 .pagination.primary > .active > span:focus {
-	background-color: #37BC9B;
-	border-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
+	border-color: <%= PRIMARY_COLOR %>;
 	color: #fff;
 }
 
@@ -3085,7 +3085,7 @@ PAGINATION
 .pagination.primary.block-color > li > a,
 .pagination.primary.block-color > li > span {
 	color: #fff;
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 	border-color: #48CFAD;
 }
 .pager.primary.block-color > li > a:hover,
@@ -3123,7 +3123,7 @@ PAGINATION
 	color: #fff;
 	color: rgba(255,255,255,0.5);
 	border-color: #48CFAD;
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 }
 
 .pager.success.block-color > li > a,
@@ -3391,7 +3391,7 @@ TABLE
 .table-th-block.table-hover > tbody > tr > th.primary:hover,
 .table-th-block.table-hover > tbody > tr.primary:hover > td,
 .table-th-block.table-hover > tbody > tr.primary:hover > th {
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 }
 .table-th-block > thead > tr > td.success,
 .table-th-block > tbody > tr > td.success,
@@ -3488,7 +3488,7 @@ TABLE
 }
 
 .table-th-block.table-primary thead tr{
-	background: #37BC9B;
+	background: <%= PRIMARY_COLOR %>;
 	color: #fff;
 }
 .table-th-block.table-success thead tr{
@@ -3643,8 +3643,8 @@ textarea.no-resize						{resize: none;}
 .has-error .form-control-feedback {color: #E9573F;}
 
 .input-group-addon.primary {
-	border-color: #37BC9B;
-	background-color: #37BC9B;
+	border-color: <%= PRIMARY_COLOR %>;
+	background-color: <%= PRIMARY_COLOR %>;
 	color: #fff;
 }
 .input-group-addon.danger {
@@ -3740,7 +3740,7 @@ DROPDOWN
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 }
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
@@ -3771,7 +3771,7 @@ DROPDOWN
 .dropdown-menu.primary > .active > a,
 .dropdown-menu.primary > .active > a:hover,
 .dropdown-menu.primary > .active > a:focus {
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 }
 .dropdown-menu.success > li > a:hover,
 .dropdown-menu.success > li > a:focus {
@@ -3896,8 +3896,8 @@ fieldset[disabled] .btn-default.active {
 	border-color: #E6E9ED;
 }
 .btn-primary {
-	background-color: #37BC9B;
-	border-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
+	border-color: <%= PRIMARY_COLOR %>;
 }
 .btn-primary.btn-perspective{
 	-webkit-box-shadow: 0px 3px 0px #279D81;
@@ -4104,7 +4104,7 @@ fieldset[disabled] .btn-danger.active {
 	border-color: #FC7C64;
 }
 .btn-danger .badge 		{color: #FC7C64;}
-.btn-link 				{color: #37BC9B;}
+.btn-link 				{color: <%= PRIMARY_COLOR %>;}
 .btn-link:hover,
 .btn-link:focus {
   color: #29AF8E;
@@ -4750,7 +4750,7 @@ LABEL AND BADGE
 .badge-primary,
 .label-primary[href]:hover,
 .label-primary[href]:focus {
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 }
 .label-success,
 .badge-success,
@@ -5027,15 +5027,15 @@ NAV
 	color: #353535;
 }
 
-.nav.nav-primary > li > a 		{color: #37BC9B}
+.nav.nav-primary > li > a 		{color: <%= PRIMARY_COLOR %>}
 .nav.nav-primary > li > a:hover,
 .nav.nav-primary > li > a:focus {
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 	color: #fff;
-	border-color: #37BC9B;
+	border-color: <%= PRIMARY_COLOR %>;
 }
 .nav-tabs.item-color.nav-primary > li > a {
-	background: #37BC9B;
+	background: <%= PRIMARY_COLOR %>;
 	color: #fff;
 }
 .nav-tabs.item-color.nav-primary > li > a:hover,
@@ -5075,7 +5075,7 @@ NAV
 .nav-pills.nav-primary > li.active > a,
 .nav-pills.nav-primary > li.active > a:hover,
 .nav-pills.nav-primary > li.active > a:focus {
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 	color: #fff;
 }
 
@@ -5228,7 +5228,7 @@ NAVBAR
 
 
 .navbar-primary {
-	background-color: #37BC9B;
+	background-color: <%= PRIMARY_COLOR %>;
 	border-color: #2CAF90;
 }
 .navbar-primary .btn.btn-primary{
@@ -5741,7 +5741,7 @@ a:focus .icon-dark,
 	text-decoration: none;
 }
 
-.icon-primary			{background: #37BC9B}
+.icon-primary			{background: <%= PRIMARY_COLOR %>}
 .icon-success			{background: #8CC152}
 .icon-info				{background: #3BAFDA}
 .icon-danger			{background: #E9573F}
@@ -5793,10 +5793,10 @@ a:focus .icon-pinterest{
 
 .icon-bordered.icon-primary{
 	background: #fff;
-	color: #37BC9B;
-	-webkit-box-shadow: inset 0px 0px 0px 2px #37BC9B;
-	-moz-box-shadow: inset 0px 0px 0px 2px #37BC9B;
-	box-shadow: inset 0px 0px 0px 2px #37BC9B;
+	color: <%= PRIMARY_COLOR %>;
+	-webkit-box-shadow: inset 0px 0px 0px 2px <%= PRIMARY_COLOR %>;
+	-moz-box-shadow: inset 0px 0px 0px 2px <%= PRIMARY_COLOR %>;
+	box-shadow: inset 0px 0px 0px 2px <%= PRIMARY_COLOR %>;
 }
 .icon-bordered.icon-success{
 	background: #fff;
@@ -5835,9 +5835,9 @@ a:focus .icon-pinterest{
 }
 
 .icon-md.icon-bordered.icon-primary{
-	-webkit-box-shadow: inset 0px 0px 0px 3px #37BC9B;
-	-moz-box-shadow: inset 0px 0px 0px 3px #37BC9B;
-	box-shadow: inset 0px 0px 0px 3px #37BC9B;
+	-webkit-box-shadow: inset 0px 0px 0px 3px <%= PRIMARY_COLOR %>;
+	-moz-box-shadow: inset 0px 0px 0px 3px <%= PRIMARY_COLOR %>;
+	box-shadow: inset 0px 0px 0px 3px <%= PRIMARY_COLOR %>;
 }
 .icon-md.icon-bordered.icon-success{
 	-webkit-box-shadow: inset 0px 0px 0px 3px #8CC152;
@@ -5866,9 +5866,9 @@ a:focus .icon-pinterest{
 }
 
 .icon-lg.icon-bordered.icon-primary{
-	-webkit-box-shadow: inset 0px 0px 0px 5px #37BC9B;
-	-moz-box-shadow: inset 0px 0px 0px 5px #37BC9B;
-	box-shadow: inset 0px 0px 0px 5px #37BC9B;
+	-webkit-box-shadow: inset 0px 0px 0px 5px <%= PRIMARY_COLOR %>;
+	-moz-box-shadow: inset 0px 0px 0px 5px <%= PRIMARY_COLOR %>;
+	box-shadow: inset 0px 0px 0px 5px <%= PRIMARY_COLOR %>;
 }
 .icon-lg.icon-bordered.icon-success{
 	-webkit-box-shadow: inset 0px 0px 0px 5px #8CC152;
@@ -5897,9 +5897,9 @@ a:focus .icon-pinterest{
 }
 
 .icon-xl.icon-bordered.icon-primary{
-	-webkit-box-shadow: inset 0px 0px 0px 8px #37BC9B;
-	-moz-box-shadow: inset 0px 0px 0px 8px #37BC9B;
-	box-shadow: inset 0px 0px 0px 8px #37BC9B;
+	-webkit-box-shadow: inset 0px 0px 0px 8px <%= PRIMARY_COLOR %>;
+	-moz-box-shadow: inset 0px 0px 0px 8px <%= PRIMARY_COLOR %>;
+	box-shadow: inset 0px 0px 0px 8px <%= PRIMARY_COLOR %>;
 }
 .icon-xl.icon-bordered.icon-success{
 	-webkit-box-shadow: inset 0px 0px 0px 8px #8CC152;

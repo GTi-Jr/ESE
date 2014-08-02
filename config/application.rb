@@ -10,6 +10,5 @@ Bundler.require(*Rails.groups)
 
 module EcejPro
   class Application < Rails::Application
-    config.path = "#{Rails.root}"
   end
 end

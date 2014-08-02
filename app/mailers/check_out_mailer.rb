@@ -1,5 +1,5 @@
 class CheckOutMailer < ActionMailer::Base
-  default from: "gtiengenhariajr@gmail.com"
+  default from: EMAIL
 
   def finish_buy (user, order)
     @user = user
