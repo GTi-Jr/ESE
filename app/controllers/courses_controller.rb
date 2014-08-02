@@ -1,25 +1,29 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :check_and_redirect
+  before_action :check_and_redirect, except: [:show]
 
   def index
     @courses = Course.all
   end
 
   def show
-    @course = Course.find(params[:id])
-    @users = @course.users
+    if(admin_user_signed_in?)
+      @course = Course.find(params[:id])
+      @users = @course.users
 
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = CoursePdf.new(@course)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = CoursePdf.new(@course)
+          send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+        end
       end
+    else
+      check_and_redirect      
     end
   end
 
-  def subscribe
+  def subscribe    
     @course = Course.find(params[:id])
     check = checkTime(@course.time, @course.day)
     if @course.users.count < @course.limit

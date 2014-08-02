@@ -13,5 +13,18 @@ ActiveAdmin.register Extra do
   #  permitted << :other if resource.something?
   #  permitted
   # end
+  index do
+    column "Titulo", :title
+    column "Descrição", :description
+    column "Limite", :limit
+    column "Preço", :price
+    column "Link Imagem", :image
+    column "Professor", :teacher
+    column "Descrição do Professor", :teacher_description
+    column "Relatório" do |extra|
+      link_to "PDF", "../extra/#{extra.id}.pdf"
+    end
+    actions
+  end
   
 end

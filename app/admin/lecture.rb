@@ -14,5 +14,18 @@ ActiveAdmin.register Lecture do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  
+  index do
+    column "Titulo", :title
+    column "Descrição", :description
+    column "Tempo", :time
+    column "Dia", :day
+    column "Preço", :price
+    column "Link Imagem", :image
+    column "Professor", :teacher
+    column "Descrição do Professor", :teacher_description
+    column "Relatório" do |lecture|
+      link_to "PDF", "../lecture/#{lecture.id}.pdf"
+    end
+    actions
+  end  
 end
