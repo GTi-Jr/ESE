@@ -15,14 +15,14 @@ class CheckoutController < ApplicationController
     # O modo como você irá armazenar os produtos que estão sendo comprados
     # depende de você. Neste caso, temos um modelo Order que referência os
     # produtos que estão sendo comprados.
-    payment = PagSeguro::PaymentRequest.new(email: 'gtiengenhariajr@gmail.com', token: 'C118B1F4701C48F594D97903237839B0')
-    payment.reference = 'gtiengenhariajr'
-    payment.notification_url = "localhost:3000"
-    payment.redirect_url = "localhost:3000"
+    payment = PagSeguro::PaymentRequest.new(email: PAGSEGURO_EMAIL, token: PAGSEGURO_TOKEN)
+    payment.reference = PAGSEGURO_NOME
+    payment.notification_url = PATH
+    payment.redirect_url = PATH
 
       payment.items << {
         id: 1,
-        description: "Pagamento do Evento - SEC",
+        description: PAGSEGURO_DESCRICAO,
         amount: session[:price]
       }
 
