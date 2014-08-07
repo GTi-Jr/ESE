@@ -2,6 +2,7 @@
 TITLE = "Semana Civil"
 PATH = "semanacivil.herokuapp.com"
 EMAIL = "gtiengenhariajr@gmail.com"
+DATE = Time.new(2014, 8, 8)
 
 / Pagseguro Settings /
 PAGSEGURO_EMAIL = 'gtiengenhariajr@gmail.com'

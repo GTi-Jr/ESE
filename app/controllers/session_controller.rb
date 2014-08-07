@@ -7,6 +7,7 @@ class SessionController < ApplicationController
     @lectures = Lecture.all.count
     @courses = Course.all.count
     @teches = Tech.all.count
+    @days_till_event = ((DATE - Time.now.at_beginning_of_day)/1.day).to_i
 
   end
 
