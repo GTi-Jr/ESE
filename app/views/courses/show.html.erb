@@ -36,13 +36,11 @@
           <div class="the-box no-border full card-info">
             <div class="the-box no-border text-center no-margin">
               <h4 class="bolded"><%= @course.teacher %></h4>
-              <img src="assets/img/avatar/avatar-15.jpg" class="social-avatar has-margin has-light-shadow img-circle" alt="Avatar">
+              <% if @course.teacher_image != nil %>
+                <img src="<%= @course.teacher_image %>" style="width: 60px" class="social-avatar has-margin has-light-shadow img-circle" alt="Avatar">
+              <% end %>
               <p class="text-muted">
               <%= @course.teacher_description %>
-              </p>
-              <p class="social-icon">
-                <a href="#fakelink"><i class="fa fa-facebook icon-xs icon-circle icon-facebook"></i></a>
-                <a href="#fakelink"><i class="fa fa-envelope icon-xs icon-circle icon-google-plus"></i></a>
               </p>
             </div>
           </div>

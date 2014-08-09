@@ -1,6 +1,6 @@
 ActiveAdmin.register Lecture do
 
-  permit_params :title, :description, :time, :day, :price, :image, :teacher, :teacher_description
+  permit_params :title, :description, :time, :day, :price, :image, :teacher, :teacher_description, :teacher_image
   
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
