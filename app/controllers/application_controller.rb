@@ -16,8 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :loged_in?
 
   def check_and_redirect
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    if @current_user == nil
+    unless loged_in?
       redirect_to "/log_in", :notice => "Increva-se e faça log in para ter acesso"
     end
   end
