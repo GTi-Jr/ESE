@@ -6,6 +6,7 @@ _We are gradually developing so if there is any thing you wanna do or think it w
 
 gtiengenhariajr@gmail.com - Come talk with us =D
 
+
 ## Project Setup
 
 1. _Clone this repo git clone ``` https://github.com/GTi-Jr/ESE.git ```_
@@ -21,6 +22,9 @@ User: admin@example.com
 
 Password: password
 
+## How to Use?
+
+There is this [Manual](https://docs.google.com/document/d/172zHM8_AKRwsOouBNlUtA6P-emX6o5vmpevJDb8Lgsk/edit?usp=sharing), unfortunately just in portuguese for now.
 
 ##Collaborate
 
