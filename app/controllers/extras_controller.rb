@@ -25,7 +25,7 @@ class ExtrasController < ApplicationController
 
   def buy
     @extra = Extra.find(params[:id])
-      if @extra.users.count
+      if @extra.users.count < @extra.limit
       @extra.users << current_user
       redirect_to :back, :notice => "Comprado =)"
     else
