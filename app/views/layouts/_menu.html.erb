@@ -7,31 +7,42 @@
           Home
         </a>
       </li>
-      <li>
-        <a href="/courses">
-          <i class="fa fa-laptop icon-sidebar"></i>
-          Cursos
-        </a>
-      </li>
-      <li>
-        <a href="/lectures">
-          <i class="fa fa-users icon-sidebar"></i>
-          Palestras
-        </a>
-      </li>
-      <li>
-        <a href="/teches">
-          <i class="fa fa-thumbs-o-up icon-sidebar"></i>
-          Visitas Técnicas
-        </a>
-      </li>
-      <li>      
-      <li>
-        <a href="/extras">
-          <i class="fa fa-gift icon-sidebar"></i>
-          Produtos
-        </a>     
-      </li>
+      <% if Course.count > 0 %>
+        <li>
+          <a href="/courses">
+            <i class="fa fa-laptop icon-sidebar"></i>
+            Cursos
+          </a>
+        </li>
+      <% end %>
+
+      <% if Lecture.count > 0 %>
+        <li>
+          <a href="/lectures">
+            <i class="fa fa-users icon-sidebar"></i>
+            Palestras
+          </a>
+        </li>
+      <% end %>
+
+      <% if Tech.count > 0%>  
+        <li>
+          <a href="/teches">
+            <i class="fa fa-thumbs-o-up icon-sidebar"></i>
+            Visitas Técnicas
+          </a>
+        </li>
+      <% end %>
+
+      <% if Extra.count > 0 %>    
+        <li>
+          <a href="/extras">
+            <i class="fa fa-gift icon-sidebar"></i>
+            Produtos
+          </a>     
+        </li>
+      <% end %>
+
       <li>
         <a href="payment">
           <i class="fa fa-shopping-cart icon-sidebar"></i>
