@@ -68,16 +68,19 @@ class ApplicationController < ActionController::Base
 
   private
   def discount
+    packages = Package.order(:price)
 
-    @pack = Package.order(!:price)
 
-    @pack.each do |p|
+    packages.each do |p|
       if ( current_user.extras.count >= p.extras ) && ( current_user.lectures.count >= p.lectures) && (current_user.courses.count >= p.courses) && (current_user.teches.count >= p.teches)
         @pack = p
-        return p.price
       end
     end
 
-    return 0
+    if @pack == nil
+      return 0
+    end
+
+    return @pack.price
   end
 end
