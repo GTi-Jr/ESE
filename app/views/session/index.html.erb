@@ -1,5 +1,5 @@
-<%= render 'navbar' %>
-<%= render 'menu' %>
+<%= render 'layouts/navbar' %>
+<%= render 'layouts/menu' %>
 <div class="page-content" style="padding: 5% 0px;">
   <div class="container-fluid">
     <% flash.each do |name, msg| %>
@@ -86,7 +86,7 @@
 </div>
 
 <div class="page-content">
-  <%= render 'footer' %>
+  <%= render 'layouts/footer' %>
 </div>
 
 
