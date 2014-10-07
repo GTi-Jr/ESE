@@ -4,9 +4,10 @@ class SessionController < ApplicationController
    before_action :check_and_redirect, :only => [:index]
 
   def index
-    @lectures = Lecture.all.count
-    @courses = Course.all.count
-    @teches = Tech.all.count
+    @users = User.count
+    @lectures = Lecture.count
+    @courses = Course.count
+    @teches = Tech.count
 
   end
 
