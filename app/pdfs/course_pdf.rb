@@ -36,7 +36,7 @@ class CoursePdf < Prawn::Document
   end
  
   def product_rows
-    [['#', 'Name', 'Price']] +
+    [['#', 'Name', 'Email']] +
       @users.map do |user|
       [user.id, user.name, user.email]
     end

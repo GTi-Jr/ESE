@@ -14,5 +14,19 @@ ActiveAdmin.register User do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  
+  index do
+    column "Nome", :name
+    column "Idade", :age
+    column "Matricula", :serial
+    column "Senha", :password
+    column "Email", :email
+    column "Telefone", :phone
+    column "Curso", :course
+    column "Facebook", :facebook
+    column "Foi pago?", :has_paid
+    column "Relatório" do |user|
+      link_to "PDF", "../user/#{user.id}.pdf"
+    end
+    actions
+  end    
 end

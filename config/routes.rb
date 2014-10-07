@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get "entry" => "users#new", :as => "users"
   post "entry" => "users#create"
   get "recover" => "users#recover", :as => "recover"
-  put "recover" => "users#recover_mail", :as => "recover_mail"
+  put "recover" => "users#recover_mail", :as => "recover_mail"    
+  get 'user/:id' => 'users#show', :as => "show_user"
 
   / Rotas para Cursos/  
   put "subscribe_course/:id" => "courses#subscribe", :as => "subscribe_course"

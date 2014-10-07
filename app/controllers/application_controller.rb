@@ -36,43 +36,41 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def order
+  def order(user)
     @order = []
     @total = 0
 
-    current_user.extras.each do |extra|
+    user.extras.each do |extra|
       @order << extra
     end
 
-    current_user.lectures.each do |lecture|
+    user.lectures.each do |lecture|
       @order << lecture
     end
 
-    current_user.courses.each do |course|
+    user.courses.each do |course|
       @order << course
     end
 
-    current_user.teches.each do |tech|
+    user.teches.each do |tech|
       @order << tech
     end
 
     @order.each do |o|
       @total = @total + o.price
     end
-
-    @total = @total - discount
+    @pack = discount(user)
+    @total = @total - @pack.price
     return @order
   end
   helper_method :order
 
-
-  private
-  def discount
+  def discount(user)
     packages = Package.order(:price)
 
 
     packages.each do |p|
-      if ( current_user.extras.count >= p.extras ) && ( current_user.lectures.count >= p.lectures) && (current_user.courses.count >= p.courses) && (current_user.teches.count >= p.teches)
+      if ( user.extras.count >= p.extras ) && ( user.lectures.count >= p.lectures) && (user.courses.count >= p.courses) && (user.teches.count >= p.teches)
         @pack = p
       end
     end
@@ -81,6 +79,6 @@ class ApplicationController < ActionController::Base
       return 0
     end
 
-    return @pack.price
+    return @pack
   end
 end

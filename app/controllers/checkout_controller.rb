@@ -2,7 +2,7 @@ class CheckoutController < ApplicationController
   before_action :check_and_redirect
 
   def new
-    order
+    order(current_user)
     if @total == 0
       redirect_to "/index", :alert => "Você ainda não tem itens para ser comprados"
     end

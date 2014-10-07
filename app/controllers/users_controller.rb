@@ -5,6 +5,22 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    if(admin_user_signed_in?)
+      @user = User.find(params[:id])
+
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = UserPdf.new(@user, discount(@user))
+          send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+        end
+      end
+    else
+      check_and_redirect      
+    end
+  end
+
   def create
     @user = User.new(user_params)
 
