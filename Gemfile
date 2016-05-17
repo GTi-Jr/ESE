@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1'
 
-gem 'sqlite3'
 gem 'prawn'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -31,14 +30,13 @@ gem 'less-rails'
 gem 'node'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
-gem "pagseguro-oficial", git: "git://github.com/pagseguro/ruby.git"
-gem 'devise',              github: 'plataformatec/devise'
-gem 'responders',          github: 'plataformatec/responders'
-gem 'inherited_resources', github: 'josevalim/inherited_resources'
-gem 'ransack',             github: 'ernie/ransack'
-gem 'activeadmin',         github: 'gregbell/active_admin'
-gem 'formtastic',          github: 'justinfrench/formtastic'
-gem 'rails_12factor', group: :production
+gem "pagseguro-oficial",      git: "git://github.com/pagseguro/ruby.git"
+gem 'devise',                 github: 'plataformatec/devise'
+gem 'responders',             github: 'plataformatec/responders'
+gem 'inherited_resources',    github: 'josevalim/inherited_resources'
+gem 'ransack',                github: 'ernie/ransack'
+gem 'activeadmin',            github: 'gregbell/active_admin'
+gem 'formtastic',             github: 'justinfrench/formtastic'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -47,6 +45,12 @@ end
 
 group :development, :test do
  gem 'rspec-rails'
+ gem 'sqlite3'
+end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
 end
 
 # Use ActiveModel has_secure_password
