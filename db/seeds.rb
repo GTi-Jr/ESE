@@ -7,6 +7,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+admin = AdminUser.new(email: 'admin@email.com', password: 'senhadoadmin')
+admin.save!
+
 (0..50).each do |i|
   test_user = User.new do |user|
     user.serial   = "#{Faker::Number.between(35,39)}#{Faker::Number.number(4)}"
