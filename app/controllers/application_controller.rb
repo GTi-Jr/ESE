@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
 
   def checkTime(time, day)
-    order.each do |o|
+    order(@current_user).each do |o|
       if !(o.is_a? Extra)
         if o.time == time && o.day == day
           return o
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def order(user)
+  def order(user = @current_user)
     @order = []
     @total = 0
 
@@ -61,12 +61,16 @@ class ApplicationController < ActionController::Base
       @total = @total + o.price
     end
     @pack = discount(user)
-    @total = @total - @pack.price
+
+    unless @pack.nil?
+      @total = @total - @pack.price
+    end
+
     return @order
   end
   helper_method :order
 
-  def discount(user)
+  def discount(user = @current_user)
     packages = Package.order(:price)
 
 
@@ -74,10 +78,6 @@ class ApplicationController < ActionController::Base
       if ( user.extras.count >= p.extras ) && ( user.lectures.count >= p.lectures) && (user.courses.count >= p.courses) && (user.teches.count >= p.teches)
         @pack = p
       end
-    end
-
-    if @pack == nil
-      return 0
     end
 
     return @pack
