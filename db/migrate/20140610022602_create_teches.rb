@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateTeches < ActiveRecord::Migration
   def change
     create_table :teches do |t|

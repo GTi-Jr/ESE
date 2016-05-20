@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Course < ActiveRecord::Base
   /Validações/
   validates :title, :presence => true

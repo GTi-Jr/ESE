@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TechesController < ApplicationController
   before_action :set_tech, only: [:show, :edit, :update, :destroy]
   before_action :check_and_redirect, except: [:show]

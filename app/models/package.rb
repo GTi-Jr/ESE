@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Package < ActiveRecord::Base
   validates :title, :presence => true
   validates :extras, :presence => true

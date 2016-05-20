@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ActiveAdmin.register Package do
 
   permit_params :lectures, :courses, :price, :title, :extras, :teches

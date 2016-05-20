@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CheckOutMailer < ActionMailer::Base
   default from: EMAIL
 

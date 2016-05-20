@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 / General Settings /
 TITLE = "Enrollment System for Events - ESE"
 PATH = "ese.herokuapp.com"

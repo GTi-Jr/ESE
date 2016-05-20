@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ActiveAdmin.register Extra do
 
   permit_params :title, :description, :limit, :price, :image

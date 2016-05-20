@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ActiveAdmin.register Tech do
 
   permit_params :title, :description, :day, :time, :limit, :price, :image, :teacher, :teacher_description

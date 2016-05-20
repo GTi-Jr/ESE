@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ExtrasController < ApplicationController
   before_action :set_extra, only: [:show, :edit, :update, :destroy]
   before_action :check_and_redirect, except: [:show]

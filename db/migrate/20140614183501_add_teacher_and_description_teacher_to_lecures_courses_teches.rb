@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddTeacherAndDescriptionTeacherToLecuresCoursesTeches < ActiveRecord::Migration
   def change
     add_column :courses, :teacher, :string

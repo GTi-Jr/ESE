@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CheckoutController < ApplicationController
   before_action :check_and_redirect
 

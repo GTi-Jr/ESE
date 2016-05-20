@@ -1,7 +1,8 @@
+# -*- encoding : utf-8 -*-
 ActiveAdmin.register User do
 
   permit_params :name, :age, :serial, :password, :email, :phone, :course, :facebook, :has_paid
-  
+
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -25,8 +26,12 @@ ActiveAdmin.register User do
     column "Facebook", :facebook
     column "Foi pago?", :has_paid
     column "Relatório" do |user|
-      link_to "PDF", "../user/#{user.id}.pdf"
+      if user.has_pack?
+        link_to "PDF", show_user_path(user.id, format: :pdf)
+      else
+        "Indisponível. Não escolheu pacote."
+      end
     end
     actions
-  end    
+  end
 end

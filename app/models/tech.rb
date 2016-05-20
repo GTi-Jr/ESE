@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Tech < ActiveRecord::Base
   /Validações/
   validates :title, :presence => true

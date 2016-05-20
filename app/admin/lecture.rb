@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ActiveAdmin.register Lecture do
 
   permit_params :title, :description, :time, :day, :price, :image, :teacher, :teacher_description

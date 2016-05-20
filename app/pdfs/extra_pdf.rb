@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'prawn/table'
 class ExtraPdf < Prawn::Document
   def initialize(extra)

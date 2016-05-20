@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ActiveAdmin.register Course do
 
   permit_params :title, :description, :time, :day, :limit, :price, :image, :teacher, :teacher_description

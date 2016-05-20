@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'prawn/table'
 class UserPdf < Prawn::Document
   def initialize(user, pack)

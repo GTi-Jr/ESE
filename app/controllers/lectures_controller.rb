@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class LecturesController < ApplicationController
   before_action :set_lecture, only: [:show, :edit, :update, :destroy]
   before_action :check_and_redirect, except: [:show]
