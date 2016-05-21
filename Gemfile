@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1'
+gem 'rails', '4.2'
 
 gem 'prawn'
 # Use SCSS for stylesheets
@@ -39,7 +39,6 @@ gem 'ransack',                github: 'ernie/ransack'
 gem 'activeadmin',            github: 'gregbell/active_admin'
 gem 'formtastic',             github: 'justinfrench/formtastic'
 gem 'faker'
-gem 'eventmachine', github: "eventmachine/eventmachine"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
