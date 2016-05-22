@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2'
+gem 'rails'
 
 gem 'prawn'
 # Use SCSS for stylesheets
@@ -26,7 +26,7 @@ gem "font-awesome-rails"
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 gem 'less-rails'
 gem 'node'
 gem 'therubyracer'

@@ -297,7 +297,7 @@ DEPENDENCIES
   font-awesome-rails
   formtastic!
   inherited_resources!
-  jbuilder (~> 1.2)
+  jbuilder
   jquery-rails
   less-rails
   letter_opener
@@ -305,7 +305,7 @@ DEPENDENCIES
   pagseguro-oficial!
   pg
   prawn
-  rails (= 4.2)
+  rails
   rails_12factor
   ransack!
   responders!
