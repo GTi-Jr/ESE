@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 / General Settings /
 TITLE = "Enrollment System for Events - ESE"
-PATH = "ese.herokuapp.com"
+PATH = Rails.application.secrets.project_url
 EMAIL = "gtiengenhariajr@gmail.com"
 
 / Pagseguro Settings /
