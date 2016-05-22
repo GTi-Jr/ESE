@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+require 'prawn'
 require 'prawn/table'
 class UserPdf < Prawn::Document
   def initialize(user, pack)
@@ -9,21 +10,21 @@ class UserPdf < Prawn::Document
     text_content
     table_content
   end
- 
+
   def header
     #This inserts an image in the pdf file and sets the size of the image
     #image "#{Rails.root}/app/assets/images/logo.png", width: 530, height: 150
   end
- 
+
   def text_content
     # The cursor for inserting content starts on the top left of the page. Here we move it down a little to create more space between the text and the image inserted above
     y_position = cursor - 50
- 
-    # The bounding_box takes the x and y coordinates for positioning its content and some options to style it    
+
+    # The bounding_box takes the x and y coordinates for positioning its content and some options to style it
     text "#{@user.name}", size: 15, style: :bold, :align => :center
- 
+
   end
- 
+
   def table_content
     # This makes a call to product_rows and gets back an array of data that will populate the columns and rows of a table
     # I then included some styling to include a header and make its text bold. I made the row background colors alternate between grey and white
@@ -65,7 +66,7 @@ class UserPdf < Prawn::Document
       text "\nDesconto = #{@pack.price}", size: 15, style: :bold, :align => :center
     end
   end
- 
+
   def courses_rows
     [['#', 'Nome', 'Preço']] +
       @user.courses.map do |course|
