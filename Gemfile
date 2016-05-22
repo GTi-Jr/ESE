@@ -28,7 +28,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 gem 'less-rails'
-gem 'node'
+# gem 'node'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem "pagseguro-oficial",      git: "git://github.com/pagseguro/ruby.git"
