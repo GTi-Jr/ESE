@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class CheckOutMailer < ActionMailer::Base
+  include SendGrid if Rails.env.production?
   default from: EMAIL
 
   def finish_buy (user, order)

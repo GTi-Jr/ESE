@@ -56,6 +56,7 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'pg'
+  gem 'sendgrid'
 end
 
 # Use ActiveModel has_secure_password
