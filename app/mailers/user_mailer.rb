@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class UserMailer < ActionMailer::Base
-  include SendGrid if Rails.env.production?
+  include SendGrid
   default from: EMAIL
 
   # Subject can be set in your I18n file at config/locales/en.yml
