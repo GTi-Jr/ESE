@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   private
   def password_notification
-    UserMailer.password_send(self).deliver
+    UserMailer.password_send(self).deliver_now
   end
 
 end
