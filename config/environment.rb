@@ -11,6 +11,8 @@ ActionMailer::Base.smtp_settings = {
   :authentication => :plain,
   :user_name      => ENV['SENGRID_USERNAME'],
   :password       => ENV['SENGRID_PASSWORD'],
-  :domain         => 'heroku.com',
+  :domain         => Rails.application.secrets.project_url,
   :enable_starttls_auto => true
 }
+
+ActionMailer::Base.default_url_options = { host: Rails.application.secrets.project_url }

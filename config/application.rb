@@ -11,5 +11,8 @@ Bundler.require(*Rails.groups)
 
 module EcejPro
   class Application < Rails::Application
+
+  	ActionMailer::Base.delivery_method = :smtp
+  	
   end
 end
